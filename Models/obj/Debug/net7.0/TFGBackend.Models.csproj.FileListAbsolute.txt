@@ -1,0 +1,11 @@
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\bin\Debug\net7.0\TFGBackend.Models.deps.json
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\bin\Debug\net7.0\TFGBackend.Models.dll
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\bin\Debug\net7.0\TFGBackend.Models.pdb
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.AssemblyInfoInputs.cache
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.AssemblyInfo.cs
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.csproj.CoreCompileInputs.cache
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.dll
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\refint\TFGBackend.Models.dll
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\TFGBackend.Models.pdb
+C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Models\obj\Debug\net7.0\ref\TFGBackend.Models.dll

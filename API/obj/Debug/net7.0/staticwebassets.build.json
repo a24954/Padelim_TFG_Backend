@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "6luqi03os9H8xOW48906AX/KYUTvNZiFGWBJ46BvGzw=",
+  "Source": "TFGBackend.API",
+  "BasePath": "_content/TFGBackend.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

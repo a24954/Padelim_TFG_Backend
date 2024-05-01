@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Models\TFGBackend.Models.csproj" />
+    <ProjectReference Include="..\Data\TFGBackend.Data.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

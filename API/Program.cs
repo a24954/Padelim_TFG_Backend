@@ -1,25 +1,47 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using TFGBackend.Data;
+using TFGBackend.Business;
+using TFGBackend.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var connectionString = builder.Configuration.GetConnectionString("ServerDB");
+
+builder.Services.AddDbContext<TFGContext>(options =>
+    options.UseSqlServer(connectionString));
+
+
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioEFRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API v1");
+});
 
-app.UseHttpsRedirection();
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:5025")
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+           .AllowCredentials();
+});
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
+
