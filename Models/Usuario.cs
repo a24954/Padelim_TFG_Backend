@@ -20,4 +20,7 @@ public class Usuario
             Admin = 1,
             StandardUser = 2
         }
+
+        public int IdReservation { get; set; }
+        public int IdPedido { get; set; }
 }
