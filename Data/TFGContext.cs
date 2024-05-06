@@ -99,7 +99,7 @@ namespace TFGBackend.Data
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Pedidos> Pedidos { get; set; }
         public DbSet<Reserva> Reserva { get; set; }
-
+        public DbSet<Reserva> Sesion { get; set; }
 
     }
 }
