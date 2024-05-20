@@ -5914,11 +5914,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
+      "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
       "projectName": "TFGBackend.API",
-      "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
+      "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
       "packagesPath": "C:\\Users\\Marcos casa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\API\\obj\\",
+      "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marcos casa\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5933,8 +5933,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Business\\TFGBackend.Business.csproj": {
-              "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Business\\TFGBackend.Business.csproj"
+            "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Business\\TFGBackend.Business.csproj": {
+              "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Business\\TFGBackend.Business.csproj"
             }
           }
         }

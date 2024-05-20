@@ -16,8 +16,7 @@ public class Reserva
 
     public int IdUser { get; set; }
 
-    public int IdPista { get; set; }
-
+    public int IdPartido { get; set; } 
     public int IdSesion { get; set; }
 
 }

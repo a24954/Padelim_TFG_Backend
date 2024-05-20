@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj": {}
+    "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj": {
+    "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj",
         "projectName": "TFGBackend.Data",
-        "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj",
+        "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Data\\TFGBackend.Data.csproj",
         "packagesPath": "C:\\Users\\Marcos casa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Data\\obj\\",
+        "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Marcos casa\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj": {
-                "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj"
+              "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj": {
+                "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj"
               }
             }
           }
@@ -85,14 +85,14 @@
         }
       }
     },
-    "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj": {
+    "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
         "projectName": "TFGBackend.Models",
-        "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
+        "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
         "packagesPath": "C:\\Users\\Marcos casa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\Models\\obj\\",
+        "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Marcos casa\\AppData\\Roaming\\NuGet\\NuGet.Config"

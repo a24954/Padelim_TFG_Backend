@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "34/HpFSps6vUvYF0x/qWoARc1iBHo+SyUAIuu/fKQoU+f5n8YZ7RRFeB0TafBFsppHKCqYrNG8GOo8ipd1bUkw==",
+  "dgSpecHash": "lmQqNlzXWuEjTMavxfXs0IEk3mkrtjDHrSUGLixz5gThr11IgCdnbnki9BsLIWs0WQE9wuyZSBZfu8JtJdfXmw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marcos casa\\Desktop\\TFG BACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
+  "projectFilePath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\API\\TFGBackend.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marcos casa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Marcos casa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

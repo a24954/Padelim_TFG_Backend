@@ -21,6 +21,8 @@ public class Usuario
             StandardUser = 2
         }
 
-        public int IdReservation { get; set; }
-        public int IdPedido { get; set; }
+        public virtual ICollection<Reserva> Reserva { get; set; } = new List<Reserva>(); 
+        public virtual ICollection<Pedidos> Pedidos { get; set; } = new List<Pedidos>();
+
+        public int IdPartido { get; set; } 
 }

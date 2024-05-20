@@ -41,6 +41,9 @@ builder.Services.AddScoped<IReservaService, ReservaService>();
 builder.Services.AddScoped<IPistaRepository, PistaEFRepository>();
 builder.Services.AddScoped<IPistaService, PistaService>();
 
+builder.Services.AddScoped<IPartidoRepository, PartidoEFRepository>();
+builder.Services.AddScoped<IPartidoService, PartidoService>();
+
 
 
 var app = builder.Build();
