@@ -1,20 +1,3 @@
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.deps.json
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.runtimeconfig.json
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.dll
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.pdb
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Models.dll
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Models.pdb
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.csproj.AssemblyReference.cache
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.AssemblyInfoInputs.cache
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.AssemblyInfo.cs
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.csproj.CoreCompileInputs.cache
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.csproj.CopyComplete
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.dll
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\refint\TFGBackend.Data.dll
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.pdb
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\TFGBackend.Data.genruntimeconfig.cache
-C:\Users\Marcos casa\Desktop\TFG BACKEND\TFGBackend\Data\obj\Debug\net7.0\ref\TFGBackend.Data.dll
 C:\Users\Marcos casa\Desktop\TFGBACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.deps.json
 C:\Users\Marcos casa\Desktop\TFGBACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.runtimeconfig.json
 C:\Users\Marcos casa\Desktop\TFGBACKEND\TFGBackend\Data\bin\Debug\net7.0\TFGBackend.Data.dll

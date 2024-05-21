@@ -12,7 +12,23 @@ namespace TFGBackend.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        
         {
+
+            {
+            modelBuilder.Entity<UsuarioPartido>()
+                .HasKey(up => new { up.IdUser, up.IdPartido });
+
+            modelBuilder.Entity<UsuarioPartido>()
+                .HasOne(up => up.Usuario)
+                .WithMany(u => u.UsuarioPartidos)
+                .HasForeignKey(up => up.IdUser);
+
+            modelBuilder.Entity<UsuarioPartido>()
+                .HasOne(up => up.Partido)
+                .WithMany(p => p.UsuarioPartidos)
+                .HasForeignKey(up => up.IdPartido);
+        }
 
             modelBuilder.Entity<Producto>().HasData(
                 new Producto { IdProduct = 1, Name_Product = "6 Pelotas Xtreme", Product_Price = "10", Product_Description = "Pelota capaz de durar más de 3 partidos, resistente a golpes bruscos, muy ligera", Product_Amount = "100", IdCategoria = 4 },
@@ -103,6 +119,9 @@ namespace TFGBackend.Data
         public DbSet<Sesion> Sesion { get; set; }
 
         public DbSet<Partido> Partido { get; set; }
+
+        public DbSet<UsuarioPartido> UsuarioPartidos { get; set; }  // Asegúrate de tener esto
+
 
     }
 }

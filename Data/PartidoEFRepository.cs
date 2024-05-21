@@ -27,17 +27,29 @@ namespace TFGBackend.Data
 
         public List<UsuarioPartidoDto> GetUsuariosPartido(int partidoId)
         {
-            var usuariosPartido = _context.Usuarios
-                .Where(u => u.IdPartido == partidoId)
-                .Select(u => new UsuarioPartidoDto
+            var usuariosPartido = _context.UsuarioPartidos
+                .Where(up => up.IdPartido == partidoId)
+                .Select(up => new UsuarioPartidoDto
                 {
-                    UserName = u.UserName,
-                    Email = u.Email
+                    UserName = up.Usuario.UserName,
+                    Email = up.Usuario.Email
                 })
-                .Take(4)  
+                .Take(4)  // Tomar solo los primeros 4 usuarios
                 .ToList();
 
             return usuariosPartido;
+        }
+
+        public void AddUsuarioToPartido(int usuarioId, int partidoId)
+        {
+            var usuarioPartido = new UsuarioPartido
+            {
+                IdUser = usuarioId,
+                IdPartido = partidoId
+            };
+
+            _context.UsuarioPartidos.Add(usuarioPartido);
+            SaveChanges();
         }
 
         public void Update(Partido partido)

@@ -20,4 +20,7 @@ public class Partido
     [Required]
     
     public int IdUser {get; set; }
+
+    public virtual ICollection<UsuarioPartido> UsuarioPartidos { get; set; } = new List<UsuarioPartido>();  // Añadir esta línea
+
 }

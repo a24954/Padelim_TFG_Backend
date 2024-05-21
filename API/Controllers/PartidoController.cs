@@ -44,14 +44,11 @@ namespace TFGBackend.API.Controllers
             if (id != partido.IdPartido)
                 return BadRequest();
 
-            try
-            {
-                _partidoService.Update(partido);
-            }
-            catch (KeyNotFoundException)
-            {
+            var existingPartido = _partidoService.Get(id);
+            if (existingPartido is null)
                 return NotFound();
-            }
+
+            _partidoService.Update(partido);
 
             return NoContent();
         }
@@ -69,15 +66,33 @@ namespace TFGBackend.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("{id}/usuarios")]
-        public ActionResult<List<UsuarioPartidoDto>> GetUsuariosPartido(int id)
+        [HttpPost("{partidoId}/usuarios/{usuarioId}")]
+        public IActionResult AddUsuarioToPartido(int partidoId, int usuarioId)
         {
-            var usuarios = _partidoService.GetUsuariosPartido(id);
+            try
+            {
+                _partidoService.AddUsuarioToPartido(usuarioId, partidoId);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{partidoId}/usuarios")]
+        public ActionResult<List<UsuarioPartidoDto>> GetUsuariosPartido(int partidoId)
+        {
+            var usuarios = _partidoService.GetUsuariosPartido(partidoId);
 
             if (usuarios == null || usuarios.Count == 0)
-                return NotFound("No se encontraron usuarios para este partido.");
+                return NotFound();
 
-            return Ok(usuarios);
+            return usuarios;
         }
     }
 }

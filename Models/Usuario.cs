@@ -18,7 +18,9 @@ public class Usuario
         public enum UserRole
         {
             Admin = 1,
-            StandardUser = 2
+            StandardUser = 2,
+
+            OwnerUser = 3
         }
 
         public virtual ICollection<Reserva> Reserva { get; set; } = new List<Reserva>(); 
@@ -26,4 +28,7 @@ public class Usuario
         public int IdPartido { get; set; } 
 
         public int IdProducto { get; set; }
+
+        public virtual ICollection<UsuarioPartido> UsuarioPartidos { get; set; } = new List<UsuarioPartido>();  
+
 }

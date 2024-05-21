@@ -27,5 +27,10 @@ namespace TFGBackend.Business
         {
             return _partidoRepository.GetUsuariosPartido(partidoId);
         }
+
+        public void AddUsuarioToPartido(int usuarioId, int partidoId)
+        {
+            _partidoRepository.AddUsuarioToPartido(usuarioId, partidoId);
+        }
     }
 }
