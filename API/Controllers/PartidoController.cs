@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-
-using TFGBackend.Data;
-using TFGBackend.Models;
 using TFGBackend.Business;
+using TFGBackend.Models;
+using System.Collections.Generic;
 
 namespace TFGBackend.API.Controllers
 {
@@ -68,6 +67,17 @@ namespace TFGBackend.API.Controllers
             _partidoService.Delete(id);
 
             return NoContent();
+        }
+
+        [HttpGet("{id}/usuarios")]
+        public ActionResult<List<UsuarioPartidoDto>> GetUsuariosPartido(int id)
+        {
+            var usuarios = _partidoService.GetUsuariosPartido(id);
+
+            if (usuarios == null || usuarios.Count == 0)
+                return NotFound("No se encontraron usuarios para este partido.");
+
+            return Ok(usuarios);
         }
     }
 }

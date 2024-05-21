@@ -15,8 +15,7 @@ public class Partido
     public string  ? Photo { get; set; }
     [Required]
     public string  ? Duration { get; set; }
-    public decimal Price { get; set; }
-    [Required]
+    
     public DateTime  ? Date { get; set; }
     [Required]
     

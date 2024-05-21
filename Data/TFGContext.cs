@@ -88,9 +88,9 @@ namespace TFGBackend.Data
                 new Sesion { IdSesion = 3, SesionTime = "14:00", IdPista = 3 }
             );
             modelBuilder.Entity<Partido>().HasData(
-                new Partido { IdPartido = 1, Name = "Partido 1", Estrellas = "5", Photo = "photo1", Duration = "2 horas", Price = 50, Date = DateTime.Now, IdUser = 1 },
-                new Partido { IdPartido = 2, Name = "Partido 2", Estrellas = "4", Photo = "photo2", Duration = "1 hora y 30 minutos", Price = 40, Date = DateTime.Now, IdUser = 2 },
-                new Partido { IdPartido = 3, Name = "Partido 3", Estrellas = "4.5", Photo = "photo3", Duration = "2 horas", Price = 60, Date = DateTime.Now, IdUser = 3 }
+                new Partido { IdPartido = 1, Name = "Partido 1", Estrellas = "5", Photo = "photo1", Duration = "2 horas", Date = DateTime.Now, IdUser = 1 },
+                new Partido { IdPartido = 2, Name = "Partido 2", Estrellas = "4", Photo = "photo2", Duration = "1 hora y 30 minutos",  Date = DateTime.Now, IdUser = 2 },
+                new Partido { IdPartido = 3, Name = "Partido 3", Estrellas = "4.5", Photo = "photo3", Duration = "2 horas", Date = DateTime.Now, IdUser = 3 }
             );
 
         }

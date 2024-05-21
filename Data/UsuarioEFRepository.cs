@@ -1,5 +1,7 @@
 using TFGBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TFGBackend.Data
 {
@@ -20,32 +22,48 @@ namespace TFGBackend.Data
 
         public UsuarioSimpleDto? Get(int usuarioId)
         {
-            var usuario = _context.Usuarios
-            .Where(usuario => usuario.IdUser == usuarioId)
-            .Select(r => new UsuarioSimpleDto
-            {
-                UserName = r.UserName,
-                Password = r.Password,
-            }).FirstOrDefault();
-            return usuario;
+            return _context.Usuarios
+                .Where(usuario => usuario.IdUser == usuarioId)
+                .Select(r => new UsuarioSimpleDto
+                {
+                    UserName = r.UserName,
+                    Password = r.Password,
+                })
+                .FirstOrDefault();
         }
-        
+
+        public List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId)
+        {
+            var partidosUsuario = _context.Partido
+                .Where(p => p.IdUser == usuarioId)
+                .Select(p => new PartidoUsuarioDto
+                {
+                    NombrePartido = p.Name,
+                    Estrellas = p.Estrellas,
+                    Duracion = p.Duration,
+                    Fecha = p.Date,
+                    UserName = _context.Usuarios.FirstOrDefault(u => u.IdUser == usuarioId).UserName
+                })
+                .ToList();
+
+            return partidosUsuario;
+        }
 
         public void Update(Usuario usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
         }
 
-        public void Delete(int usuarioId) {
+        public void Delete(int usuarioId)
+        {
             var usuario = _context.Usuarios.Find(usuarioId);
-            if (usuario is null) {
+            if (usuario is null)
+            {
                 throw new KeyNotFoundException("Account not found.");
             }
             _context.Usuarios.Remove(usuario);
             SaveChanges();
-
         }
-        
 
         public void SaveChanges()
         {
@@ -55,7 +73,6 @@ namespace TFGBackend.Data
         public List<Usuario> GetAll()
         {
             return _context.Usuarios.ToList();
-
         }
-    }   
+    }
 }

@@ -1,7 +1,7 @@
 using TFGBackend.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TFGBackend.Data
 {
@@ -25,6 +25,21 @@ namespace TFGBackend.Data
             return _context.Partido.FirstOrDefault(partido => partido.IdPartido == partidoId);
         }
 
+        public List<UsuarioPartidoDto> GetUsuariosPartido(int partidoId)
+        {
+            var usuariosPartido = _context.Usuarios
+                .Where(u => u.IdPartido == partidoId)
+                .Select(u => new UsuarioPartidoDto
+                {
+                    UserName = u.UserName,
+                    Email = u.Email
+                })
+                .Take(4)  
+                .ToList();
+
+            return usuariosPartido;
+        }
+
         public void Update(Partido partido)
         {
             var existingPartido = _context.Partido.FirstOrDefault(p => p.IdPartido == partido.IdPartido);
@@ -34,7 +49,6 @@ namespace TFGBackend.Data
                 existingPartido.Estrellas = partido.Estrellas;
                 existingPartido.Photo = partido.Photo;
                 existingPartido.Duration = partido.Duration;
-                existingPartido.Price = partido.Price;
                 existingPartido.Date = partido.Date;
                 existingPartido.IdUser = partido.IdUser;
 
@@ -57,7 +71,6 @@ namespace TFGBackend.Data
             }
             _context.Partido.Remove(partido);
             SaveChanges();
-
         }
 
         public void SaveChanges()

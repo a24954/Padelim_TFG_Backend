@@ -1,4 +1,6 @@
 using TFGBackend.Models;
+using System.Collections.Generic;
+
 namespace TFGBackend.Data
 {
     public interface IUsuarioRepository
@@ -8,5 +10,6 @@ namespace TFGBackend.Data
         void Add(Usuario usuario);
         void Delete(int id);
         void Update(Usuario usuario);
+        List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId); 
     }
 }

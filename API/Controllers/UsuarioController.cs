@@ -65,5 +65,16 @@ namespace TFGBackend.API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{id}/partidos")]
+        public ActionResult<List<PartidoUsuarioDto>> GetPartidosUsuario(int id)
+        {
+            var partidos = _usuarioService.GetPartidosUsuario(id);
+
+            if (partidos == null || partidos.Count == 0)
+                return NotFound();
+
+            return partidos;
+        }
     }
 }

@@ -1,5 +1,7 @@
 using TFGBackend.Data;
 using TFGBackend.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TFGBackend.Business
 {
@@ -7,11 +9,11 @@ namespace TFGBackend.Business
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository){
-
+        public UsuarioService(IUsuarioRepository usuarioRepository)
+        {
             _usuarioRepository = usuarioRepository;
-            
         }
+
         public List<Usuario> GetAll() => _usuarioRepository.GetAll();
 
         public UsuarioSimpleDto? Get(int id) => _usuarioRepository.Get(id);
@@ -21,12 +23,15 @@ namespace TFGBackend.Business
         public void Delete(int id) => _usuarioRepository.Delete(id);
 
         public void Update(Usuario usuario) => _usuarioRepository.Update(usuario);
-    
+
         public Usuario Login(string userName, string password)
         {
-            var usuario = _usuarioRepository.GetAll().FirstOrDefault(u => u.UserName == userName && u.Password == password);
+            return _usuarioRepository.GetAll().FirstOrDefault(u => u.UserName == userName && u.Password == password);
+        }
 
-            return usuario; 
+        public List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId)
+        {
+            return _usuarioRepository.GetPartidosUsuario(usuarioId);
         }
     }
 }

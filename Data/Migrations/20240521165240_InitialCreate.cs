@@ -36,8 +36,7 @@ namespace TFGBackend.Data.Migrations
                     Estrellas = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Duration = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IdUser = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -90,7 +89,8 @@ namespace TFGBackend.Data.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rol = table.Column<int>(type: "int", nullable: false),
-                    IdPartido = table.Column<int>(type: "int", nullable: false)
+                    IdPartido = table.Column<int>(type: "int", nullable: false),
+                    IdProducto = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -156,12 +156,12 @@ namespace TFGBackend.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Partido",
-                columns: new[] { "IdPartido", "Date", "Duration", "Estrellas", "IdUser", "Name", "Photo", "Price" },
+                columns: new[] { "IdPartido", "Date", "Duration", "Estrellas", "IdUser", "Name", "Photo" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8917), "2 horas", "5", 1, "Partido 1", "photo1", 50m },
-                    { 2, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8921), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2", 40m },
-                    { 3, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8923), "2 horas", "4.5", 3, "Partido 3", "photo3", 60m }
+                    { 1, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2928), "2 horas", "5", 1, "Partido 1", "photo1" },
+                    { 2, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2930), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2" },
+                    { 3, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2933), "2 horas", "4.5", 3, "Partido 3", "photo3" }
                 });
 
             migrationBuilder.InsertData(
@@ -169,9 +169,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdPista", "Date", "Description", "Duration", "Name", "Photo", "Price" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8774), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
-                    { 2, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8816), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
-                    { 3, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8819), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
+                    { 1, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2798), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
+                    { 2, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2837), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
+                    { 3, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2840), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
                 });
 
             migrationBuilder.InsertData(
@@ -206,9 +206,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdReservation", "IdPista", "IdSesion", "IdUser", "ReservationDate", "ReservationPrice", "SesionTime", "User_Email", "UsuarioIdUser" },
                 values: new object[,]
                 {
-                    { 1, 0, 0, 0, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8891), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola1@gmail.com", null },
-                    { 2, 0, 0, 0, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8894), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola2@gmail.com", null },
-                    { 3, 0, 0, 0, new DateTime(2024, 5, 21, 18, 6, 16, 938, DateTimeKind.Local).AddTicks(8895), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola3@gmail.com", null }
+                    { 1, 0, 0, 0, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2898), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola1@gmail.com", null },
+                    { 2, 0, 0, 0, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2901), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola2@gmail.com", null },
+                    { 3, 0, 0, 0, new DateTime(2024, 5, 21, 18, 52, 40, 478, DateTimeKind.Local).AddTicks(2903), "10", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "hola3@gmail.com", null }
                 });
 
             migrationBuilder.InsertData(
@@ -223,12 +223,12 @@ namespace TFGBackend.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Usuarios",
-                columns: new[] { "IdUser", "Email", "IdPartido", "Password", "Rol", "UserName" },
+                columns: new[] { "IdUser", "Email", "IdPartido", "IdProducto", "Password", "Rol", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "hola1@gmail.com", 0, "123", 1, "cosmar" },
-                    { 2, "hola2@gmail.com", 0, "123", 2, "cosmari" },
-                    { 3, "hola3@gmail.com", 0, "123", 2, "cosmaro" }
+                    { 1, "hola1@gmail.com", 0, 0, "123", 1, "cosmar" },
+                    { 2, "hola2@gmail.com", 0, 0, "123", 2, "cosmari" },
+                    { 3, "hola3@gmail.com", 0, 0, "123", 2, "cosmaro" }
                 });
 
             migrationBuilder.CreateIndex(

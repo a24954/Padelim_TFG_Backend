@@ -1,4 +1,5 @@
 using TFGBackend.Models;
+using System.Collections.Generic;
 
 namespace TFGBackend.Data
 {
@@ -9,5 +10,6 @@ namespace TFGBackend.Data
         void Add(Partido partido);
         void Delete(int id);
         void Update(Partido partido);
+        List<UsuarioPartidoDto> GetUsuariosPartido(int partidoId);  
     }
 }
