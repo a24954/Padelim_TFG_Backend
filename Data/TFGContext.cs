@@ -76,11 +76,7 @@ namespace TFGBackend.Data
                 new Usuario { IdUser = 2, UserName = "cosmari", Password = "123", Email = "hola2@gmail.com", Rol = Usuario.UserRole.StandardUser },
                 new Usuario { IdUser = 3, UserName = "cosmaro", Password = "123", Email = "hola3@gmail.com", Rol = Usuario.UserRole.StandardUser }
             );
-            modelBuilder.Entity<Pedidos>().HasData(
-                new Pedidos { IdPedidos = 1, Fe_Inicio = System.DateTime.Now, Total_Price = 10, Estado = "Pendiente" },
-                new Pedidos { IdPedidos = 2, Fe_Inicio = System.DateTime.Now, Total_Price = 20, Estado = "Entregado" },
-                new Pedidos { IdPedidos = 3, Fe_Inicio = System.DateTime.Now, Total_Price = 30, Estado = "En Reparto" }
-            );
+
             modelBuilder.Entity<Reserva>().HasData(
                 new Reserva { IdReservation = 1, User_Email = "hola1@gmail.com", ReservationPrice = "10", ReservationDate = System.DateTime.Now },
                 new Reserva { IdReservation = 2, User_Email = "hola2@gmail.com", ReservationPrice = "10", ReservationDate = System.DateTime.Now },
@@ -91,15 +87,22 @@ namespace TFGBackend.Data
                 new Sesion { IdSesion = 2, SesionTime = "12:00", IdPista = 2 },
                 new Sesion { IdSesion = 3, SesionTime = "14:00", IdPista = 3 }
             );
+            modelBuilder.Entity<Partido>().HasData(
+                new Partido { IdPartido = 1, Name = "Partido 1", Estrellas = "5", Photo = "photo1", Duration = "2 horas", Price = 50, Date = DateTime.Now, IdUser = 1 },
+                new Partido { IdPartido = 2, Name = "Partido 2", Estrellas = "4", Photo = "photo2", Duration = "1 hora y 30 minutos", Price = 40, Date = DateTime.Now, IdUser = 2 },
+                new Partido { IdPartido = 3, Name = "Partido 3", Estrellas = "4.5", Photo = "photo3", Duration = "2 horas", Price = 60, Date = DateTime.Now, IdUser = 3 }
+            );
+
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Pista> Pista { get; set; }
         public DbSet<Producto> Producto { get; set; }
-        public DbSet<Pedidos> Pedidos { get; set; }
         public DbSet<Reserva> Reserva { get; set; }
-        public DbSet<Reserva> Sesion { get; set; }
+        public DbSet<Sesion> Sesion { get; set; }
+
+        public DbSet<Partido> Partido { get; set; }
 
     }
 }

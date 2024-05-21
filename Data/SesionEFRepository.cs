@@ -64,7 +64,7 @@ namespace TFGBackend.Data
 
         public List<Sesion> GetAll()
         {
-            return _context.Reserva.Select(r => new Sesion { IdSesion = r.IdSesion, SesionTime = r.SesionTime, IdPista = r.IdPista }).ToList();
+            return _context.Sesion.Select(r => new Sesion { IdSesion = r.IdSesion, SesionTime = r.SesionTime, IdPista = r.IdPista }).ToList();
         }
     }
 }

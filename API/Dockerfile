@@ -9,7 +9,7 @@ COPY API/*.csproj API/
 RUN dotnet restore TFGBackend.sln
 
 COPY . .
-RUN dotnet publish TeatroApi.sln -c Release -o API/out
+RUN dotnet publish TFGBackend.sln -c Release -o API/out
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app

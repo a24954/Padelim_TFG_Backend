@@ -14,9 +14,10 @@ public class Reserva
     [Required]
     public DateTime ReservationDate { get; set; }
 
-    public int IdUser { get; set; }
-
-    public int IdPartido { get; set; } 
     public int IdSesion { get; set; }
+    public DateTime SesionTime { get; set; }
+
+    public int IdUser { get; set; }
+    public int IdPista { get; set; }
 
 }

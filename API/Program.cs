@@ -29,9 +29,6 @@ builder.Services.AddScoped<ISesionService, SesionService>();
 builder.Services.AddScoped<IProductoRepository, ProductoEFRepository>();
 builder.Services.AddScoped<IProductoService, ProductoService>();
 
-builder.Services.AddScoped<IPedidosRepository, PedidosEFRepository>();
-builder.Services.AddScoped<IPedidosService, PedidosService>();
-
 builder.Services.AddScoped<ICategoriaRepository, CategoriaEFRepository>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 

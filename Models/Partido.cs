@@ -20,7 +20,5 @@ public class Partido
     public DateTime  ? Date { get; set; }
     [Required]
     
-    public int IdReservation { get; set; }
-
     public int IdUser {get; set; }
 }
