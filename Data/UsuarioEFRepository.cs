@@ -48,11 +48,21 @@ namespace TFGBackend.Data
 
             return partidosUsuario;
         }
-
-        public void Update(Usuario usuario)
+        public void Update(UsuarioSimpleDto usuarioDto)
         {
-            _context.Entry(usuario).State = EntityState.Modified;
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.IdUser == usuarioDto.IdUser);
+            if (usuario == null)
+            {
+                throw new KeyNotFoundException("Usuario no encontrado");
+            }
+
+            usuario.UserName = usuarioDto.UserName;
+            usuario.Password = usuarioDto.Password;
+            usuario.Email = usuarioDto.Email;
+
+            _context.SaveChanges();
         }
+
 
         public void Delete(int usuarioId)
         {

@@ -1,5 +1,6 @@
 using TFGBackend.Models;
 using System.Collections.Generic;
+using TFGBackend.Models.DTOs;
 
 namespace TFGBackend.Data
 {
@@ -9,7 +10,7 @@ namespace TFGBackend.Data
         UsuarioSimpleDto? Get(int id);
         void Add(Usuario usuario);
         void Delete(int id);
-        void Update(Usuario usuario);
-        List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId); 
+        void Update(UsuarioSimpleDto usuarioDto);
+        List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
     }
 }

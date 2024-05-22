@@ -39,7 +39,7 @@ namespace TFGBackend.API.Controllers
             return CreatedAtAction(nameof(Get), new { id = usuario.IdUser }, usuario);
         }
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Usuario usuario)
+        public IActionResult Update(int id, UsuarioSimpleDto usuario)
         {
             if (id != usuario.IdUser)
                 return BadRequest();
@@ -48,10 +48,12 @@ namespace TFGBackend.API.Controllers
             if (existingUsuario is null)
                 return NotFound();
 
-            _usuarioService.Update(usuario);
+            _usuarioService.Update(id, usuario);
 
             return NoContent();
         }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -75,6 +77,23 @@ namespace TFGBackend.API.Controllers
                 return NotFound();
 
             return partidos;
+        }
+        [HttpPost("comprar")]
+        public ActionResult<CompraResponseDto> ComprarProductos([FromBody] CompraRequestDto compraRequest)
+        {
+            try
+            {
+                var compraResponse = _usuarioService.ComprarProductos(compraRequest);
+                return Ok(compraResponse);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return NotFound(new { message = e.Message });
+            }
+            catch (InvalidOperationException e)
+            {
+                return BadRequest(new { message = e.Message });
+            }
         }
     }
 }

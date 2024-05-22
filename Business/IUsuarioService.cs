@@ -1,5 +1,6 @@
 ﻿using TFGBackend.Models;
 using System.Collections.Generic;
+using TFGBackend.Models.DTOs;
 
 namespace TFGBackend.Business
 {
@@ -9,8 +10,9 @@ namespace TFGBackend.Business
         UsuarioSimpleDto? Get(int id);
         void Add(Usuario usuario);
         void Delete(int id);
-        void Update(Usuario usuario);
+        void Update(int id, UsuarioSimpleDto usuarioDto);
         Usuario Login(string userName, string password);
-        List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId); // Añadir esta línea
+        List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
+        CompraResponseDto ComprarProductos(CompraRequestDto compraRequest);
     }
 }
