@@ -39,16 +39,20 @@ namespace TFGBackend.API.Controllers
             return CreatedAtAction(nameof(Get), new { id = usuario.IdUser }, usuario);
         }
         [HttpPut("{id}")]
-        public IActionResult Update(int id, UsuarioSimpleDto usuario)
+        public IActionResult Update(int id, UsuarioSimpleDto usuarioDto)
         {
-            if (id != usuario.IdUser)
+            if (id != usuarioDto.IdUser)
                 return BadRequest();
 
-            var existingUsuario = _usuarioService.Get(id);
-            if (existingUsuario is null)
+            var existingUser = _usuarioService.GetForUpdate(id);
+            if (existingUser == null)
                 return NotFound();
 
-            _usuarioService.Update(id, usuario);
+            existingUser.UserName = usuarioDto.UserName;
+            existingUser.Password = usuarioDto.Password;
+            existingUser.Email = usuarioDto.Email;
+
+            _usuarioService.Update(existingUser);
 
             return NoContent();
         }

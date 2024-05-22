@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace TFGBackend.Data
 {
     public class UsuarioEFRepository : IUsuarioRepository
@@ -48,19 +49,16 @@ namespace TFGBackend.Data
 
             return partidosUsuario;
         }
-        public void Update(UsuarioSimpleDto usuarioDto)
+
+        public void Update(Usuario usuario)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.IdUser == usuarioDto.IdUser);
-            if (usuario == null)
-            {
-                throw new KeyNotFoundException("Usuario no encontrado");
-            }
+            _context.Entry(usuario).State = EntityState.Modified;
+            SaveChanges();
+        }
 
-            usuario.UserName = usuarioDto.UserName;
-            usuario.Password = usuarioDto.Password;
-            usuario.Email = usuarioDto.Email;
-
-            _context.SaveChanges();
+        public Usuario? GetForUpdate(int IdUser)
+        {
+            return _context.Usuarios.FirstOrDefault(p => p.IdUser == IdUser);
         }
 
 

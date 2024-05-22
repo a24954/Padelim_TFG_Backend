@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
+      "projectUniqueName": "c:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
       "projectName": "TFGBackend.Models",
-      "projectPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
+      "projectPath": "c:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
       "packagesPath": "C:\\Users\\Marcos casa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\obj\\",
+      "outputPath": "c:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marcos casa\\AppData\\Roaming\\NuGet\\NuGet.Config"

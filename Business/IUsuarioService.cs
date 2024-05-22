@@ -10,8 +10,9 @@ namespace TFGBackend.Business
         UsuarioSimpleDto? Get(int id);
         void Add(Usuario usuario);
         void Delete(int id);
-        void Update(int id, UsuarioSimpleDto usuarioDto);
+        void Update(Usuario usuario);
         Usuario Login(string userName, string password);
+        Usuario? GetForUpdate(int IdUser);
         List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
         CompraResponseDto ComprarProductos(CompraRequestDto compraRequest);
     }

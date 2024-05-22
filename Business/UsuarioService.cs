@@ -24,33 +24,13 @@ namespace TFGBackend.Business
         public void Add(Usuario usuario) => _usuarioRepository.Add(usuario);
 
         public void Delete(int id) => _usuarioRepository.Delete(id);
-
-        public void Update(int id, UsuarioSimpleDto usuarioDto)
-        {
-            var usuario = _usuarioRepository.Get(id);
-            if (usuario == null)
-            {
-                throw new KeyNotFoundException("Usuario no encontrado");
-            }
-
-            if (!string.IsNullOrEmpty(usuarioDto.UserName))
-            {
-                usuario.UserName = usuarioDto.UserName;
-            }
-            if (!string.IsNullOrEmpty(usuarioDto.Password))
-            {
-                usuario.Password = usuarioDto.Password;
-            }
-            if (!string.IsNullOrEmpty(usuarioDto.Email))
-            {
-                usuario.Email = usuarioDto.Email;
-            }
-
-            _usuarioRepository.Update(usuario);
+        
+        public Usuario? GetForUpdate(int IdUser) {
+            return _usuarioRepository.GetForUpdate(IdUser);
         }
 
-
-
+        public void Update(Usuario usuario) => _usuarioRepository.Update(usuario);
+        
         public Usuario Login(string userName, string password)
         {
             return _usuarioRepository.GetAll().FirstOrDefault(u => u.UserName == userName && u.Password == password);

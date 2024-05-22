@@ -10,7 +10,8 @@ namespace TFGBackend.Data
         UsuarioSimpleDto? Get(int id);
         void Add(Usuario usuario);
         void Delete(int id);
-        void Update(UsuarioSimpleDto usuarioDto);
+        void Update(Usuario usuario);
+        Usuario? GetForUpdate(int IdUser);
         List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
     }
 }

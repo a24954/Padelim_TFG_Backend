@@ -120,7 +120,7 @@ namespace TFGBackend.Data
 
         public DbSet<Partido> Partido { get; set; }
 
-        public DbSet<UsuarioPartido> UsuarioPartidos { get; set; }  // Asegúrate de tener esto
+        public DbSet<UsuarioPartido> UsuarioPartidos { get; set; }  
 
 
     }
