@@ -15,5 +15,6 @@ namespace TFGBackend.Business
         Usuario? GetForUpdate(int IdUser);
         List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
         CompraResponseDto ComprarProductos(CompraRequestDto compraRequest);
+        List<CompraResponseDto> GetComprasUsuario(int usuarioId);
     }
 }

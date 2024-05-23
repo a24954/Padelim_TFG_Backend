@@ -13,5 +13,7 @@ namespace TFGBackend.Data
         void Update(Usuario usuario);
         Usuario? GetForUpdate(int IdUser);
         List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
+        CompraResponseDto ComprarProductos(CompraRequestDto compraRequest);
+        List<CompraResponseDto> GetComprasUsuario(int usuarioId);
     }
 }

@@ -28,6 +28,19 @@ namespace TFGBackend.Data
                 .HasOne(up => up.Partido)
                 .WithMany(p => p.UsuarioPartidos)
                 .HasForeignKey(up => up.IdPartido);
+            
+             modelBuilder.Entity<Compra>()
+                .HasKey(c => c.IdCompra);
+
+            modelBuilder.Entity<Compra>()
+                .HasOne(c => c.Usuario)
+                .WithMany(u => u.Compras)
+                .HasForeignKey(c => c.IdUser);
+
+            modelBuilder.Entity<Compra>()
+                .HasOne(c => c.Producto)
+                .WithMany()
+                .HasForeignKey(c => c.IdProducto);
         }
 
             modelBuilder.Entity<Producto>().HasData(
@@ -117,6 +130,8 @@ namespace TFGBackend.Data
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Reserva> Reserva { get; set; }
         public DbSet<Sesion> Sesion { get; set; }
+
+        public DbSet<Compra> Compras { get; set; }
 
         public DbSet<Partido> Partido { get; set; }
 

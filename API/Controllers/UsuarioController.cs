@@ -99,5 +99,21 @@ namespace TFGBackend.API.Controllers
                 return BadRequest(new { message = e.Message });
             }
         }
+
+        [HttpGet("{id}/compras")]
+        public IActionResult GetComprasUsuario(int id)
+        {
+            if (_usuarioService == null)
+            {
+                return StatusCode(500, "Servicio de usuario no está disponible.");
+            }
+
+            var compras = _usuarioService.GetComprasUsuario(id);
+
+            if (compras == null || !compras.Any())
+                return NotFound();
+
+            return Ok(compras);
+        }
     }
 }

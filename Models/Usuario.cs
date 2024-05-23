@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace TFGBackend.Models;
+using System.Collections.Generic;
 
-
-public class Usuario
+namespace TFGBackend.Models
 {
-    [Key]
+    public class Usuario
+    {
+        [Key]
         public int IdUser { get; set; }
         [Required]
         public string UserName { get; set; }
@@ -19,16 +20,13 @@ public class Usuario
         {
             Admin = 1,
             StandardUser = 2,
-
             OwnerUser = 3
         }
 
-        public virtual ICollection<Reserva> Reserva { get; set; } = new List<Reserva>(); 
-
-        public int IdPartido { get; set; } 
-
+        public virtual ICollection<Reserva> Reserva { get; set; } = new List<Reserva>();
+        public int IdPartido { get; set; }
         public int IdProducto { get; set; }
-
-        public virtual ICollection<UsuarioPartido> UsuarioPartidos { get; set; } = new List<UsuarioPartido>();  
-
+        public virtual ICollection<UsuarioPartido> UsuarioPartidos { get; set; } = new List<UsuarioPartido>();
+        public virtual ICollection<Compra> Compras { get; set; } = new List<Compra>();
+    }
 }

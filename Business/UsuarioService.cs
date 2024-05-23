@@ -43,41 +43,12 @@ namespace TFGBackend.Business
 
         public CompraResponseDto ComprarProductos(CompraRequestDto compraRequest)
         {
-            var usuario = _usuarioRepository.Get(compraRequest.IdUser);
-            if (usuario == null) throw new KeyNotFoundException("Usuario no encontrado");
+            return _usuarioRepository.ComprarProductos(compraRequest);
+        }
 
-            decimal total = 0;
-            List<ProductoCompraResponseDto> productosComprados = new List<ProductoCompraResponseDto>();
-
-            foreach (var productoDto in compraRequest.Productos)
-            {
-                var producto = _productoRepository.Get(productoDto.IdProducto);
-                if (producto == null) throw new KeyNotFoundException($"Producto con ID {productoDto.IdProducto} no encontrado");
-
-                int cantidadDisponible = int.Parse(producto.Product_Amount);
-                if (productoDto.Cantidad > cantidadDisponible) throw new InvalidOperationException($"No hay suficiente stock para el producto {producto.Name_Product}");
-
-                producto.Product_Amount = (cantidadDisponible - productoDto.Cantidad).ToString();
-                _productoRepository.Update(producto);
-
-                decimal precioProducto = decimal.Parse(producto.Product_Price) * productoDto.Cantidad;
-                total += precioProducto;
-
-                productosComprados.Add(new ProductoCompraResponseDto
-                {
-                    IdProducto = producto.IdProduct,
-                    Nombre = producto.Name_Product,
-                    Cantidad = productoDto.Cantidad,
-                    PrecioTotal = precioProducto
-                });
-            }
-
-            return new CompraResponseDto
-            {
-                IdUser = compraRequest.IdUser,
-                UserName = usuario.UserName,
-                Productos = productosComprados,
-            };
+        public List<CompraResponseDto> GetComprasUsuario(int usuarioId)
+        {
+            return _usuarioRepository.GetComprasUsuario(usuarioId);
         }
     }
 }

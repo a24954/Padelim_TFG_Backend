@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace TFGBackend.Data
 {
     public class UsuarioEFRepository : IUsuarioRepository
@@ -61,7 +60,6 @@ namespace TFGBackend.Data
             return _context.Usuarios.FirstOrDefault(p => p.IdUser == IdUser);
         }
 
-
         public void Delete(int usuarioId)
         {
             var usuario = _context.Usuarios.Find(usuarioId);
@@ -81,6 +79,77 @@ namespace TFGBackend.Data
         public List<Usuario> GetAll()
         {
             return _context.Usuarios.ToList();
+        }
+
+        public CompraResponseDto ComprarProductos(CompraRequestDto compraRequest)
+        {
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.IdUser == compraRequest.IdUser);
+            if (usuario == null) throw new KeyNotFoundException("Usuario no encontrado");
+
+            decimal total = 0;
+            List<ProductoCompraResponseDto> productosComprados = new List<ProductoCompraResponseDto>();
+
+            foreach (var productoDto in compraRequest.Productos)
+            {
+                var producto = _context.Producto.FirstOrDefault(p => p.IdProduct == productoDto.IdProducto);
+                if (producto == null) throw new KeyNotFoundException($"Producto con ID {productoDto.IdProducto} no encontrado");
+
+                int cantidadDisponible = int.Parse(producto.Product_Amount);
+                if (productoDto.Cantidad > cantidadDisponible) throw new InvalidOperationException($"No hay suficiente stock para el producto {producto.Name_Product}");
+
+                producto.Product_Amount = (cantidadDisponible - productoDto.Cantidad).ToString();
+                _context.Entry(producto).State = EntityState.Modified;
+
+                decimal precioProducto = decimal.Parse(producto.Product_Price) * productoDto.Cantidad;
+                total += precioProducto;
+
+                productosComprados.Add(new ProductoCompraResponseDto
+                {
+                    IdProducto = producto.IdProduct,
+                    Nombre = producto.Name_Product,
+                    Cantidad = productoDto.Cantidad,
+                    PrecioTotal = precioProducto
+                });
+
+                // Registrar la compra en la base de datos
+                var compra = new Compra
+                {
+                    IdUser = compraRequest.IdUser,
+                    IdProducto = producto.IdProduct,
+                    Cantidad = productoDto.Cantidad,
+                    PrecioTotal = precioProducto
+                };
+                _context.Compras.Add(compra);
+            }
+
+            _context.SaveChanges();
+
+            return new CompraResponseDto
+            {
+                IdUser = compraRequest.IdUser,
+                UserName = usuario.UserName,
+                Productos = productosComprados,
+            };
+        }
+
+        public List<CompraResponseDto> GetComprasUsuario(int usuarioId)
+        {
+            return _context.Compras
+                .Where(c => c.IdUser == usuarioId)
+                .Select(c => new CompraResponseDto
+                {
+                    IdUser = c.IdUser,
+                    UserName = _context.Usuarios.FirstOrDefault(u => u.IdUser == c.IdUser).UserName,
+                    Productos = _context.Compras
+                        .Where(cp => cp.IdUser == c.IdUser)
+                        .Select(cp => new ProductoCompraResponseDto
+                        {
+                            IdProducto = cp.IdProducto,
+                            Nombre = _context.Producto.FirstOrDefault(p => p.IdProduct == cp.IdProducto).Name_Product,
+                            Cantidad = cp.Cantidad,
+                            PrecioTotal = cp.PrecioTotal
+                        }).ToList()
+                }).ToList();
         }
     }
 }
