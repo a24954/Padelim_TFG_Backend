@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-
 using TFGBackend.Data;
 using TFGBackend.Models;
 using TFGBackend.Business;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace TFGBackend.API.Controllers
 {
@@ -33,11 +35,21 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Usuario usuario)
+        public async Task<IActionResult> Create(CreateUsuarioDto createUsuarioDto)
         {
+            var usuario = new Usuario
+            {
+                UserName = createUsuarioDto.UserName,
+                Password = createUsuarioDto.Password,
+                Email = createUsuarioDto.Email,
+                Rol = createUsuarioDto.Rol
+            };
+
             _usuarioService.Add(usuario);
+
             return CreatedAtAction(nameof(Get), new { id = usuario.IdUser }, usuario);
         }
+
         [HttpPut("{id}")]
         public IActionResult Update(int id, UsuarioSimpleDto usuarioDto)
         {
@@ -56,8 +68,6 @@ namespace TFGBackend.API.Controllers
 
             return NoContent();
         }
-
-
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
@@ -82,6 +92,7 @@ namespace TFGBackend.API.Controllers
 
             return partidos;
         }
+
         [HttpPost("comprar")]
         public ActionResult<CompraResponseDto> ComprarProductos([FromBody] CompraRequestDto compraRequest)
         {
