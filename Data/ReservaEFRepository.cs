@@ -20,8 +20,12 @@ namespace TFGBackend.Data
 
         public Reserva? Get(int reservaId)
         {
-            return _context.Reserva.FirstOrDefault(reserva => reserva.IdReservation == reservaId);
+            return _context.Reserva
+                .Include(r => r.Pista)
+                .Include(r => r.Sesion)
+                .FirstOrDefault(reserva => reserva.IdReservation == reservaId);
         }
+
 
         public void Update(Reserva reserva)
         {

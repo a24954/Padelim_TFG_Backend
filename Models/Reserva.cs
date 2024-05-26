@@ -14,15 +14,15 @@ namespace TFGBackend.Models
         [Required]
         public DateTime ReservationDate { get; set; }
 
-        [ForeignKey("IdPista")]
+        [ForeignKey("Pista")]
         public int IdPista { get; set; }
         public Pista Pista { get; set; }
 
-        [ForeignKey("IdSesion")]
+        [ForeignKey("Sesion")]
         public int IdSesion { get; set; }
         public Sesion Sesion { get; set; }
 
-        [ForeignKey("IdUsuario")]
+        [ForeignKey("Usuario")]
         public int IdUser { get; set; }
         public Usuario Usuario { get; set; }
     }

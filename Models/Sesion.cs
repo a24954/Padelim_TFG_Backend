@@ -9,5 +9,11 @@ public class Sesion
     public int IdSesion { get; set; }
     [Required]
     public string SesionTime { get; set; }
+
     public int IdPista { get; set; }
+
+
+    [ForeignKey("IdPista")]
+
+    public Pista Pista { get; set; }
 }

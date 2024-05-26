@@ -34,13 +34,6 @@ namespace TFGBackend.API.Controllers
             if (reserva == null)
                 return NotFound();
 
-            var pista = _pistaService.Get(reserva.IdPista);
-            var sesion = _sesionService.Get(reserva.IdSesion);
-            var usuario = _usuarioService.Get(reserva.IdUser);
-
-            if (pista == null || sesion == null || usuario == null)
-                return NotFound();
-
             var response = new ReservaResponseDto
             {
                 IdReservation = reserva.IdReservation,
@@ -48,8 +41,8 @@ namespace TFGBackend.API.Controllers
                 ReservationDate = reserva.ReservationDate,
                 IdPista = reserva.IdPista,
                 IdSesion = reserva.IdSesion,
-                PistaName = pista.Name,
-                SesionTime = sesion.SesionTime
+                PistaName = reserva.Pista?.Name,
+                SesionTime = reserva.Sesion?.SesionTime
             };
 
             return response;
@@ -78,6 +71,7 @@ namespace TFGBackend.API.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = reserva.IdReservation }, reserva);
         }
+
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] ReservaRequestDto reservaRequest)
