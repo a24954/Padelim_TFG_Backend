@@ -28,7 +28,6 @@ namespace TFGBackend.Data
             var existingReserva = _context.Reserva.FirstOrDefault(r => r.IdReservation == reserva.IdReservation);
             if (existingReserva != null)
             {
-                existingReserva.User_Email = reserva.User_Email;
                 existingReserva.ReservationPrice = reserva.ReservationPrice;
                 existingReserva.ReservationDate = reserva.ReservationDate;
                 existingReserva.IdUser = reserva.IdUser;
@@ -43,6 +42,15 @@ namespace TFGBackend.Data
             {
                 throw new KeyNotFoundException("Reservation not found.");
             }
+        }
+
+        public List<Reserva> GetReservasByUser(int userId)
+        {
+            return _context.Reserva
+                .Include(r => r.Pista)
+                .Include(r => r.Sesion)
+                .Where(r => r.IdUser == userId)
+                .ToList();
         }
 
         public void Delete(int reservaId)

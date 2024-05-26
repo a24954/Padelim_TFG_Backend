@@ -8,5 +8,7 @@ namespace TFGBackend.Data
         void Add(Reserva reserva);
         void Delete(int id);
         void Update(Reserva reserva);
+
+        List<Reserva> GetReservasByUser(int userId);
     }
 }

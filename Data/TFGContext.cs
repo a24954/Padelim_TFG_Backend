@@ -12,36 +12,50 @@ namespace TFGBackend.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        
+
         {
 
             {
-            modelBuilder.Entity<UsuarioPartido>()
-                .HasKey(up => new { up.IdUser, up.IdPartido });
+                modelBuilder.Entity<UsuarioPartido>()
+                    .HasKey(up => new { up.IdUser, up.IdPartido });
 
-            modelBuilder.Entity<UsuarioPartido>()
-                .HasOne(up => up.Usuario)
-                .WithMany(u => u.UsuarioPartidos)
-                .HasForeignKey(up => up.IdUser);
+                modelBuilder.Entity<UsuarioPartido>()
+                    .HasOne(up => up.Usuario)
+                    .WithMany(u => u.UsuarioPartidos)
+                    .HasForeignKey(up => up.IdUser);
 
-            modelBuilder.Entity<UsuarioPartido>()
-                .HasOne(up => up.Partido)
-                .WithMany(p => p.UsuarioPartidos)
-                .HasForeignKey(up => up.IdPartido);
-            
-             modelBuilder.Entity<Compra>()
-                .HasKey(c => c.IdCompra);
+                modelBuilder.Entity<UsuarioPartido>()
+                    .HasOne(up => up.Partido)
+                    .WithMany(p => p.UsuarioPartidos)
+                    .HasForeignKey(up => up.IdPartido);
 
-            modelBuilder.Entity<Compra>()
-                .HasOne(c => c.Usuario)
-                .WithMany(u => u.Compras)
-                .HasForeignKey(c => c.IdUser);
+                modelBuilder.Entity<Compra>()
+                   .HasKey(c => c.IdCompra);
 
-            modelBuilder.Entity<Compra>()
-                .HasOne(c => c.Producto)
-                .WithMany()
-                .HasForeignKey(c => c.IdProducto);
-        }
+                modelBuilder.Entity<Compra>()
+                    .HasOne(c => c.Usuario)
+                    .WithMany(u => u.Compras)
+                    .HasForeignKey(c => c.IdUser);
+
+                modelBuilder.Entity<Compra>()
+                    .HasOne(c => c.Producto)
+                    .WithMany()
+                    .HasForeignKey(c => c.IdProducto);
+                modelBuilder.Entity<Reserva>()
+                    .HasOne(r => r.Sesion)
+                    .WithMany()
+                    .HasForeignKey(r => r.IdSesion);
+
+                modelBuilder.Entity<Reserva>()
+                    .HasOne(r => r.Usuario)
+                    .WithMany()
+                    .HasForeignKey(r => r.IdUser);
+
+                modelBuilder.Entity<Reserva>()
+                    .HasOne(r => r.Pista)
+                    .WithMany()
+                    .HasForeignKey(r => r.IdPista);
+            }
 
             modelBuilder.Entity<Producto>().HasData(
                 new Producto { IdProduct = 1, Name_Product = "6 Pelotas Xtreme", Product_Price = "10", Product_Description = "Pelota capaz de durar más de 3 partidos, resistente a golpes bruscos, muy ligera", Product_Amount = "100", IdCategoria = 4 },
@@ -107,9 +121,9 @@ namespace TFGBackend.Data
             );
 
             modelBuilder.Entity<Reserva>().HasData(
-                new Reserva { IdReservation = 1, User_Email = "hola1@gmail.com", ReservationPrice = "10", ReservationDate = System.DateTime.Now },
-                new Reserva { IdReservation = 2, User_Email = "hola2@gmail.com", ReservationPrice = "10", ReservationDate = System.DateTime.Now },
-                new Reserva { IdReservation = 3, User_Email = "hola3@gmail.com", ReservationPrice = "10", ReservationDate = System.DateTime.Now }
+                new Reserva { IdReservation = 1, ReservationPrice = "10", ReservationDate = System.DateTime.Now },
+                new Reserva { IdReservation = 2, ReservationPrice = "10", ReservationDate = System.DateTime.Now },
+                new Reserva { IdReservation = 3, ReservationPrice = "10", ReservationDate = System.DateTime.Now }
             );
             modelBuilder.Entity<Sesion>().HasData(
                 new Sesion { IdSesion = 1, SesionTime = "10:00", IdPista = 1 },
@@ -118,7 +132,7 @@ namespace TFGBackend.Data
             );
             modelBuilder.Entity<Partido>().HasData(
                 new Partido { IdPartido = 1, Name = "Partido 1", Estrellas = "5", Photo = "photo1", Duration = "2 horas", Date = DateTime.Now, IdUser = 1 },
-                new Partido { IdPartido = 2, Name = "Partido 2", Estrellas = "4", Photo = "photo2", Duration = "1 hora y 30 minutos",  Date = DateTime.Now, IdUser = 2 },
+                new Partido { IdPartido = 2, Name = "Partido 2", Estrellas = "4", Photo = "photo2", Duration = "1 hora y 30 minutos", Date = DateTime.Now, IdUser = 2 },
                 new Partido { IdPartido = 3, Name = "Partido 3", Estrellas = "4.5", Photo = "photo3", Duration = "2 horas", Date = DateTime.Now, IdUser = 3 }
             );
 
@@ -135,7 +149,7 @@ namespace TFGBackend.Data
 
         public DbSet<Partido> Partido { get; set; }
 
-        public DbSet<UsuarioPartido> UsuarioPartidos { get; set; }  
+        public DbSet<UsuarioPartido> UsuarioPartidos { get; set; }
 
 
     }
