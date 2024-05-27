@@ -3,12 +3,12 @@ namespace TFGBackend.Data
 {
     public interface IReservaRepository
     {
-        List<Reserva> GetAll();
+        List<ReservaResponseDto> GetAll();
         Reserva? Get(int id);
         void Add(Reserva reserva);
         void Delete(int id);
         void Update(Reserva reserva);
 
-        List<Reserva> GetReservasByUser(int userId);
+        List<ReservaResponseDto> GetReservasByUser(int userId);
     }
 }

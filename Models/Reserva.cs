@@ -14,10 +14,6 @@ namespace TFGBackend.Models
         [Required]
         public DateTime ReservationDate { get; set; }
 
-        [ForeignKey("Pista")]
-        public int IdPista { get; set; }
-        public Pista Pista { get; set; }
-
         [ForeignKey("Sesion")]
         public int IdSesion { get; set; }
         public Sesion Sesion { get; set; }

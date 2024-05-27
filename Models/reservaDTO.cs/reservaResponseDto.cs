@@ -1,3 +1,5 @@
+using TFGBackend.DTOs;
+
 namespace TFGBackend.Models
 {
     public class ReservaResponseDto
@@ -5,10 +7,10 @@ namespace TFGBackend.Models
         public int IdReservation { get; set; }
         public string ReservationPrice { get; set; }
         public DateTime ReservationDate { get; set; }
-        public int IdPista { get; set; }
-        public int IdSesion { get; set; }
-        public string PistaName { get; set; }
-        public string SesionTime { get; set; }
+       
+        public SesionDto Sesion { get; set; }
+
+        public UsuarioSimpleDto User { get; set; }
     }
 
 }

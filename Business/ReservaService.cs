@@ -13,7 +13,7 @@ namespace TFGBackend.Business
             _reservaRepository = reservaRepository;
         }
 
-        public List<Reserva> GetAll() => _reservaRepository.GetAll();
+        public List<ReservaResponseDto> GetAll() => _reservaRepository.GetAll();
 
         public Reserva? Get(int id) => _reservaRepository.Get(id);
 
@@ -23,7 +23,7 @@ namespace TFGBackend.Business
 
         public void Update(Reserva reserva) => _reservaRepository.Update(reserva);
 
-        public List<Reserva> GetReservasByUser(int userId)
+        public List<ReservaResponseDto> GetReservasByUser(int userId)
         {
             return _reservaRepository.GetReservasByUser(userId);
         }

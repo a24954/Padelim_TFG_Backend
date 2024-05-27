@@ -20,10 +20,12 @@ namespace TFGBackend.Data
 
         public Reserva? Get(int reservaId)
         {
-            return _context.Reserva
-                .Include(r => r.Pista)
+            var reserva = _context.Reserva
                 .Include(r => r.Sesion)
+                .ThenInclude(s => s.Pista)
+                .Include(s => s.Usuario)
                 .FirstOrDefault(reserva => reserva.IdReservation == reservaId);
+                return reserva;
         }
 
 
@@ -35,7 +37,6 @@ namespace TFGBackend.Data
                 existingReserva.ReservationPrice = reserva.ReservationPrice;
                 existingReserva.ReservationDate = reserva.ReservationDate;
                 existingReserva.IdUser = reserva.IdUser;
-                existingReserva.IdPista = reserva.IdPista;
                 existingReserva.IdSesion = reserva.IdSesion;
 
                 _context.Entry(existingReserva).State = EntityState.Modified;
@@ -48,13 +49,31 @@ namespace TFGBackend.Data
             }
         }
 
-        public List<Reserva> GetReservasByUser(int userId)
+        public List<ReservaResponseDto> GetReservasByUser(int userId)
         {
-            return _context.Reserva
-                .Include(r => r.Pista)
+            
+            var reservations = _context.Reserva
                 .Include(r => r.Sesion)
+                .ThenInclude(s => s.Pista)
                 .Where(r => r.IdUser == userId)
+                .Select(c => new ReservaResponseDto
+                {
+                    IdReservation = c.IdReservation,
+                    ReservationPrice = c.ReservationPrice,
+                    ReservationDate = c.ReservationDate,
+                    Sesion = new SesionDto {
+                        IdSesion = c.Sesion.IdSesion,
+                        SesionTime = c.Sesion.SesionTime,
+                        Pista = new PistaDto {
+                            IdPista = c.Sesion.Pista.IdPista,
+                            Name = c.Sesion.Pista.Name,
+                            Duration = c.Sesion.Pista.Duration,
+                            Price = c.Sesion.Pista.Price,
+                        }
+                    }            
+                })
                 .ToList();
+                return reservations;
         }
 
         public void Delete(int reservaId)
@@ -75,9 +94,29 @@ namespace TFGBackend.Data
             _context.SaveChanges();
         }
 
-        public List<Reserva> GetAll()
+        public List<ReservaResponseDto> GetAll()
         {
-            return _context.Reserva.ToList();
+            var reservas = _context.Reserva.Include(s=>s.Sesion)
+            .ThenInclude(s=>s.Pista)
+            .Include(s=>s.Usuario)
+            .Select(r => new ReservaResponseDto{
+                IdReservation = r.IdReservation,
+                ReservationPrice = r.ReservationPrice,
+                ReservationDate = r.ReservationDate,
+                Sesion = new SesionDto {
+                    IdSesion = r.Sesion.IdSesion,
+                    SesionTime = r.Sesion.SesionTime,
+                    Pista = new PistaDto {
+                        IdPista = r.Sesion.Pista.IdPista,
+                        Name = r.Sesion.Pista.Name,
+                        Duration = r.Sesion.Pista.Duration,
+                        Price = r.Sesion.Pista.Price,
+                    }
+                }
+                
+            })
+            .ToList();
+            return reservas;
 
         }
     }

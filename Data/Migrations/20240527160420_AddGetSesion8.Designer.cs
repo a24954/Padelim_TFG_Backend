@@ -12,8 +12,8 @@ using TFGBackend.Data;
 namespace TFGBackend.Data.Migrations
 {
     [DbContext(typeof(TFGContext))]
-    [Migration("20240526171108_AddGetReservation14")]
-    partial class AddGetReservation14
+    [Migration("20240527160420_AddGetSesion8")]
+    partial class AddGetSesion8
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,7 +136,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPartido = 1,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7625),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3772),
                             Duration = "2 horas",
                             Estrellas = "5",
                             IdUser = 1,
@@ -146,7 +146,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPartido = 2,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7628),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3777),
                             Duration = "1 hora y 30 minutos",
                             Estrellas = "4",
                             IdUser = 2,
@@ -156,7 +156,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPartido = 3,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7630),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3779),
                             Duration = "2 horas",
                             Estrellas = "4.5",
                             IdUser = 3,
@@ -204,7 +204,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPista = 1,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7486),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3575),
                             Description = "Pista 1",
                             Duration = "1 hora y 30 minutos",
                             Name = "Pista 1",
@@ -214,7 +214,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPista = 2,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7529),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3625),
                             Description = "Pista 2",
                             Duration = "1 hora y 30 minutos",
                             Name = "Pista 2",
@@ -224,7 +224,7 @@ namespace TFGBackend.Data.Migrations
                         new
                         {
                             IdPista = 3,
-                            Date = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7532),
+                            Date = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3627),
                             Description = "Pista 3",
                             Duration = "1 hora y 30 minutos",
                             Name = "Pista 3",
@@ -493,7 +493,7 @@ namespace TFGBackend.Data.Migrations
                             IdPista = 1,
                             IdSesion = 1,
                             IdUser = 1,
-                            ReservationDate = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7591),
+                            ReservationDate = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3656),
                             ReservationPrice = "10"
                         },
                         new
@@ -502,7 +502,7 @@ namespace TFGBackend.Data.Migrations
                             IdPista = 2,
                             IdSesion = 2,
                             IdUser = 2,
-                            ReservationDate = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7594),
+                            ReservationDate = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3660),
                             ReservationPrice = "10"
                         },
                         new
@@ -511,7 +511,7 @@ namespace TFGBackend.Data.Migrations
                             IdPista = 3,
                             IdSesion = 3,
                             IdUser = 3,
-                            ReservationDate = new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7597),
+                            ReservationDate = new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3662),
                             ReservationPrice = "10"
                         });
                 });
@@ -672,7 +672,7 @@ namespace TFGBackend.Data.Migrations
                     b.HasOne("TFGBackend.Models.Sesion", "Sesion")
                         .WithMany()
                         .HasForeignKey("IdSesion")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("TFGBackend.Models.Usuario", "Usuario")

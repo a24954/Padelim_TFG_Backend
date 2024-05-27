@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TFGBackend.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddGetReservation14 : Migration
+    public partial class AddGetSesion8 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -196,8 +196,7 @@ namespace TFGBackend.Data.Migrations
                         name: "FK_Reserva_Sesion_IdSesion",
                         column: x => x.IdSesion,
                         principalTable: "Sesion",
-                        principalColumn: "IdSesion",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "IdSesion");
                     table.ForeignKey(
                         name: "FK_Reserva_Usuarios_IdUser",
                         column: x => x.IdUser,
@@ -228,9 +227,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdPartido", "Date", "Duration", "Estrellas", "IdUser", "Name", "Photo" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7625), "2 horas", "5", 1, "Partido 1", "photo1" },
-                    { 2, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7628), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2" },
-                    { 3, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7630), "2 horas", "4.5", 3, "Partido 3", "photo3" }
+                    { 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3772), "2 horas", "5", 1, "Partido 1", "photo1" },
+                    { 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3777), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2" },
+                    { 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3779), "2 horas", "4.5", 3, "Partido 3", "photo3" }
                 });
 
             migrationBuilder.InsertData(
@@ -238,9 +237,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdPista", "Date", "Description", "Duration", "Name", "Photo", "Price" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7486), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
-                    { 2, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7529), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
-                    { 3, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7532), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
+                    { 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3575), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
+                    { 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3625), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
+                    { 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3627), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
                 });
 
             migrationBuilder.InsertData(
@@ -295,9 +294,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdReservation", "IdPista", "IdSesion", "IdUser", "ReservationDate", "ReservationPrice", "UsuarioIdUser" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7591), "10", null },
-                    { 2, 2, 2, 2, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7594), "10", null },
-                    { 3, 3, 3, 3, new DateTime(2024, 5, 26, 19, 11, 8, 524, DateTimeKind.Local).AddTicks(7597), "10", null }
+                    { 1, 1, 1, 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3656), "10", null },
+                    { 2, 2, 2, 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3660), "10", null },
+                    { 3, 3, 3, 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3662), "10", null }
                 });
 
             migrationBuilder.CreateIndex(

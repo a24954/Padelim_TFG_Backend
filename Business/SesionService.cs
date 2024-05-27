@@ -1,5 +1,6 @@
+using TFGBackend.DTOs;
 using TFGBackend.Data;
-using TFGBackend.Models;
+using System.Collections.Generic;
 
 namespace TFGBackend.Business
 {
@@ -7,19 +8,19 @@ namespace TFGBackend.Business
     {
         private readonly ISesionRepository _sesionRepository;
 
-        public SesionService(ISesionRepository sesionRepository){
-
+        public SesionService(ISesionRepository sesionRepository)
+        {
             _sesionRepository = sesionRepository;
-            
         }
-        public List<Sesion> GetAll() => _sesionRepository.GetAll();
 
-        public Sesion? Get(int id) => _sesionRepository.Get(id);
+        public List<SesionSimpleDto> GetAll() => _sesionRepository.GetAll();
 
-        public void Add(Sesion sesion) => _sesionRepository.Add(sesion);
+        public SesionSimpleDto? Get(int id) => _sesionRepository.Get(id);
+
+        public void Add(SesionSimpleDto sesion) => _sesionRepository.Add(sesion);
 
         public void Delete(int id) => _sesionRepository.Delete(id);
 
-        public void Update(Sesion sesion) => _sesionRepository.Update(sesion);
+        public void Update(SesionSimpleDto sesion) => _sesionRepository.Update(sesion);
     }
 }

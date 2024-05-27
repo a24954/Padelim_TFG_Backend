@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-
-using TFGBackend.Data;
-using TFGBackend.Models;
 using TFGBackend.Business;
+using TFGBackend.DTOs;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace TFGBackend.API.Controllers
 {
@@ -18,41 +18,41 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Sesion>> GetAll() =>
-            _sesionService.GetAll();
+        public ActionResult<List<SesionSimpleDto>> GetAll()
+        {
+            var sesiones = _sesionService.GetAll();
+            return Ok(sesiones);
+        }
 
         [HttpGet("{id}")]
-        public ActionResult<Sesion> Get(int id)
+        public ActionResult<SesionSimpleDto> Get(int id)
         {
             var sesion = _sesionService.Get(id);
-
             if (sesion == null)
                 return NotFound();
 
-            return sesion;
+            return Ok(sesion);
         }
 
         [HttpPost]
-        public IActionResult Create(Sesion sesion)
+        public IActionResult Create(SesionSimpleDto sesionDTO)
         {
-            _sesionService.Add(sesion);
-            return CreatedAtAction(nameof(Get), new { id = sesion.IdSesion }, sesion);
+            _sesionService.Add(sesionDTO);
+            return CreatedAtAction(nameof(Get), new { id = sesionDTO.IdPista }, sesionDTO);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Sesion sesion)
+        public IActionResult Update(int id, SesionUpdateDto sesionUpdateDTO)
         {
-            if (id != sesion.IdSesion)
+            if (id != sesionUpdateDTO.IdPista)
                 return BadRequest();
 
-            try
+            _sesionService.Update(new SesionSimpleDto
             {
-                _sesionService.Update(sesion);
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound();
-            }
+                IdSesion = id,
+                SesionTime = sesionUpdateDTO.SesionTime,
+                IdPista = sesionUpdateDTO.IdPista
+            });
 
             return NoContent();
         }
@@ -61,12 +61,10 @@ namespace TFGBackend.API.Controllers
         public IActionResult Delete(int id)
         {
             var sesion = _sesionService.Get(id);
-
-            if (sesion is null)
+            if (sesion == null)
                 return NotFound();
 
             _sesionService.Delete(id);
-
             return NoContent();
         }
     }

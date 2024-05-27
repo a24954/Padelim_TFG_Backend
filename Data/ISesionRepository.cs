@@ -1,12 +1,13 @@
+using TFGBackend.DTOs;
 using TFGBackend.Models;
 namespace TFGBackend.Data
 {
     public interface ISesionRepository
     {
-        List<Sesion> GetAll();
-        Sesion? Get(int id);
-        void Add(Sesion sesion);
+        List<SesionSimpleDto> GetAll();
+        SesionSimpleDto? Get(int id);
+        void Add(SesionSimpleDto sesion);
         void Delete(int id);
-        void Update(Sesion sesion);
+        void Update(SesionSimpleDto sesion);
     }
 }

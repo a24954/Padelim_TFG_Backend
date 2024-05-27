@@ -45,7 +45,7 @@ namespace TFGBackend.Data
                  .HasOne(r => r.Sesion)
                  .WithMany()
                  .HasForeignKey(r => r.IdSesion)
-                 .OnDelete(DeleteBehavior.Restrict); 
+                 .OnDelete(DeleteBehavior.NoAction); 
 
                 modelBuilder.Entity<Reserva>()
                     .HasOne(r => r.Usuario)
@@ -53,11 +53,6 @@ namespace TFGBackend.Data
                     .HasForeignKey(r => r.IdUser)
                     .OnDelete(DeleteBehavior.Restrict); 
 
-                modelBuilder.Entity<Reserva>()
-                    .HasOne(r => r.Pista)
-                    .WithMany()
-                    .HasForeignKey(r => r.IdPista)
-                    .OnDelete(DeleteBehavior.Cascade);
             }
 
             modelBuilder.Entity<Producto>().HasData(
@@ -124,9 +119,9 @@ namespace TFGBackend.Data
             );
 
             modelBuilder.Entity<Reserva>().HasData(
-                new Reserva { IdReservation = 1, ReservationPrice = "10", ReservationDate = System.DateTime.Now, IdPista = 1, IdUser = 1, IdSesion = 1 },
-                new Reserva { IdReservation = 2, ReservationPrice = "10", ReservationDate = System.DateTime.Now, IdPista = 2, IdUser = 2, IdSesion = 2 },
-                new Reserva { IdReservation = 3, ReservationPrice = "10", ReservationDate = System.DateTime.Now, IdPista = 3, IdUser = 3, IdSesion = 3 }
+                new Reserva { IdReservation = 1, ReservationPrice = "10", ReservationDate = System.DateTime.Now,  IdUser = 1, IdSesion = 1 },
+                new Reserva { IdReservation = 2, ReservationPrice = "10", ReservationDate = System.DateTime.Now,  IdUser = 2, IdSesion = 2 },
+                new Reserva { IdReservation = 3, ReservationPrice = "10", ReservationDate = System.DateTime.Now,  IdUser = 3, IdSesion = 3 }
             );
             modelBuilder.Entity<Sesion>().HasData(
                 new Sesion { IdSesion = 1, SesionTime = "10:00", IdPista = 1 },

@@ -12,8 +12,6 @@ public class Sesion
 
     public int IdPista { get; set; }
 
-
     [ForeignKey("IdPista")]
-
     public Pista Pista { get; set; }
 }

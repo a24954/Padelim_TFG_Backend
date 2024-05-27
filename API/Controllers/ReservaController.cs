@@ -23,7 +23,7 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Reserva>> GetAll() =>
+        public ActionResult<List<ReservaResponseDto>> GetAll() =>
             _reservaService.GetAll();
 
         [HttpGet("{id}")]
@@ -39,11 +39,8 @@ namespace TFGBackend.API.Controllers
                 IdReservation = reserva.IdReservation,
                 ReservationPrice = reserva.ReservationPrice,
                 ReservationDate = reserva.ReservationDate,
-                IdPista = reserva.IdPista,
-                IdSesion = reserva.IdSesion,
-                PistaName = reserva.Pista?.Name,
-                SesionTime = reserva.Sesion?.SesionTime
-            };
+                
+                };
 
             return response;
         }
@@ -51,17 +48,17 @@ namespace TFGBackend.API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] ReservaRequestDto reservaRequest)
         {
-            var pista = _pistaService.Get(reservaRequest.IdPista);
+           
             var sesion = _sesionService.Get(reservaRequest.IdSesion);
             var usuario = _usuarioService.Get(reservaRequest.IdUser);
 
-            if (pista == null || sesion == null || usuario == null)
+            if ( sesion == null || usuario == null)
                 return NotFound();
 
             var reserva = new Reserva
             {
                 IdUser = reservaRequest.IdUser,
-                IdPista = reservaRequest.IdPista,
+      
                 IdSesion = reservaRequest.IdSesion,
                 ReservationDate = reservaRequest.ReservationDate,
                 ReservationPrice = reservaRequest.ReservationPrice,
@@ -76,14 +73,12 @@ namespace TFGBackend.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] ReservaRequestDto reservaRequest)
         {
-            if (id != reservaRequest.IdReservation)
-                return BadRequest();
 
             var existingReserva = _reservaService.Get(id);
             if (existingReserva == null)
                 return NotFound();
 
-            existingReserva.IdPista = reservaRequest.IdPista;
+        
             existingReserva.IdSesion = reservaRequest.IdSesion;
             existingReserva.ReservationDate = reservaRequest.ReservationDate;
             existingReserva.ReservationPrice = reservaRequest.ReservationPrice;
@@ -98,21 +93,12 @@ namespace TFGBackend.API.Controllers
 
         public ActionResult<List<ReservaResponseDto>> GetReservasByUser(int userId)
         {
-            var reservas = _reservaService.GetReservasByUser(userId);
 
-            if (reservas == null || !reservas.Any())
-                return NotFound("No se encontraron reservas para este usuario.");
+            var reservations = _reservaService.GetReservasByUser(userId);
+            if (reservations is null)
+                return NotFound();
 
-            var response = reservas.Select(reserva => new ReservaResponseDto
-            {
-                IdReservation = reserva.IdReservation,
-                ReservationPrice = reserva.ReservationPrice,
-                ReservationDate = reserva.ReservationDate,
-                IdPista = reserva.IdPista,
-                IdSesion = reserva.IdSesion,
-            }).ToList();
-
-            return response;
+            return reservations;
         }
 
         [HttpDelete("{id}")]
