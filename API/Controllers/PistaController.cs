@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-
-using TFGBackend.Data;
-using TFGBackend.Models;
 using TFGBackend.Business;
+using TFGBackend.Models;
+using System.Collections.Generic;
 
 namespace TFGBackend.API.Controllers
 {
@@ -33,8 +32,18 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Pista pista)
+        public IActionResult Create(PistaSimpleDto pistaDto)
         {
+            var pista = new Pista
+            {
+                Name = pistaDto.Name,
+                Description = pistaDto.Description,
+                Photo = pistaDto.Photo,
+                Duration = pistaDto.Duration,
+                Price = pistaDto.Price,
+                Date = pistaDto.Date
+            };
+
             _pistaService.Add(pista);
             return CreatedAtAction(nameof(Get), new { id = pista.IdPista }, pista);
         }

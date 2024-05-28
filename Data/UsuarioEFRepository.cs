@@ -100,7 +100,7 @@ namespace TFGBackend.Data
                 producto.Product_Amount = (cantidadDisponible - productoDto.Cantidad).ToString();
                 _context.Entry(producto).State = EntityState.Modified;
 
-                decimal precioProducto = decimal.Parse(producto.Product_Price) * productoDto.Cantidad;
+                decimal precioProducto = (decimal)producto.Product_Price * productoDto.Cantidad;
                 total += precioProducto;
 
                 productosComprados.Add(new ProductoCompraResponseDto
@@ -111,7 +111,6 @@ namespace TFGBackend.Data
                     PrecioTotal = precioProducto
                 });
 
-                // Registrar la compra en la base de datos
                 var compra = new Compra
                 {
                     IdUser = compraRequest.IdUser,

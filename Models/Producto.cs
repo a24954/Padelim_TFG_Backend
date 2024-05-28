@@ -10,11 +10,13 @@ public class Producto
     [Required]
     public string Name_Product { get; set; }
     [Required]
-    public string Product_Price { get; set; }
+    public double Product_Price { get; set; }
     [Required]
     public string Product_Description { get; set; }
     [Required]
     public string Product_Amount { get; set; }
+
+    public string Photo { get; set; }
 
     public int IdCategoria { get; set; }
 

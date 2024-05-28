@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TFGBackend.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AddGetSesion8 : Migration
+    public partial class AddPostFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,9 +69,10 @@ namespace TFGBackend.Data.Migrations
                     IdProduct = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameProduct = table.Column<string>(name: "Name_Product", type: "nvarchar(max)", nullable: false),
-                    ProductPrice = table.Column<string>(name: "Product_Price", type: "nvarchar(max)", nullable: false),
+                    ProductPrice = table.Column<double>(name: "Product_Price", type: "float", nullable: false),
                     ProductDescription = table.Column<string>(name: "Product_Description", type: "nvarchar(max)", nullable: false),
                     ProductAmount = table.Column<string>(name: "Product_Amount", type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -178,7 +179,6 @@ namespace TFGBackend.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservationPrice = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdPista = table.Column<int>(type: "int", nullable: false),
                     IdSesion = table.Column<int>(type: "int", nullable: false),
                     IdUser = table.Column<int>(type: "int", nullable: false),
                     UsuarioIdUser = table.Column<int>(type: "int", nullable: true)
@@ -186,12 +186,6 @@ namespace TFGBackend.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reserva", x => x.IdReservation);
-                    table.ForeignKey(
-                        name: "FK_Reserva_Pista_IdPista",
-                        column: x => x.IdPista,
-                        principalTable: "Pista",
-                        principalColumn: "IdPista",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Reserva_Sesion_IdSesion",
                         column: x => x.IdSesion,
@@ -227,9 +221,9 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdPartido", "Date", "Duration", "Estrellas", "IdUser", "Name", "Photo" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3772), "2 horas", "5", 1, "Partido 1", "photo1" },
-                    { 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3777), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2" },
-                    { 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3779), "2 horas", "4.5", 3, "Partido 3", "photo3" }
+                    { 1, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4423), "2 horas", "5", 1, "Partido 1", "photo1" },
+                    { 2, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4426), "1 hora y 30 minutos", "4", 2, "Partido 2", "photo2" },
+                    { 3, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4428), "2 horas", "4.5", 3, "Partido 3", "photo3" }
                 });
 
             migrationBuilder.InsertData(
@@ -237,36 +231,36 @@ namespace TFGBackend.Data.Migrations
                 columns: new[] { "IdPista", "Date", "Description", "Duration", "Name", "Photo", "Price" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3575), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
-                    { 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3625), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
-                    { 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3627), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
+                    { 1, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4313), "Pista 1", "1 hora y 30 minutos", "Pista 1", "photo1", 10m },
+                    { 2, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4354), "Pista 2", "1 hora y 30 minutos", "Pista 2", "photo2", 20m },
+                    { 3, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4357), "Pista 3", "1 hora y 30 minutos", "Pista 3", "photo3", 30m }
                 });
 
             migrationBuilder.InsertData(
                 table: "Producto",
-                columns: new[] { "IdProduct", "IdCategoria", "Name_Product", "Product_Amount", "Product_Description", "Product_Price" },
+                columns: new[] { "IdProduct", "IdCategoria", "Name_Product", "Photo", "Product_Amount", "Product_Description", "Product_Price" },
                 values: new object[,]
                 {
-                    { 1, 4, "6 Pelotas Xtreme", "100", "Pelota capaz de durar más de 3 partidos, resistente a golpes bruscos, muy ligera", "10" },
-                    { 2, 4, "6 Pelotas ProFlight", "100", "Pelota diseñada para un vuelo estable y consistente. Construcción duradera para resistir largos rallies. Ideal para jugadores que buscan precisión en sus golpes.", "12" },
-                    { 3, 4, "6 Pelotas AirTech", "100", "Pelota con tecnología de cámara de aire para un rebote uniforme y predecible. Cubierta resistente que garantiza una larga durabilidad. Apta para todo tipo de superficies.", "11" },
-                    { 4, 4, "6 Pelotas PowerSpin", "180", "Pelota diseñada para generar mayor efecto en los golpes. Núcleo interno optimizado para aumentar el spin. Duradera y resistente a golpes.", "13" },
-                    { 5, 4, "6 Pelotas SpeedX", "250", "Pelota de alta velocidad para rallies rápidos. Superficie texturizada para un mejor agarre en la pista. Apta para jugadores de todos los niveles.", "10" },
-                    { 6, 5, "Bolsa ProTour", "20", "Bolsa de tamaño mediano con compartimentos para hasta 3 palas, pelotas y accesorios. Diseño ergonómico con correas ajustables para mayor comodidad.", "50" },
-                    { 7, 5, "Mochila PádelTech", "15", "Mochila resistente al agua con capacidad para 2 palas, pelotas, calzado y otros accesorios. Bolsillos laterales para botellas de agua.", "40" },
-                    { 8, 5, "Bolsa TravelMaster", "8", "Bolsa de viaje con ruedas para transportar todo el equipo de pádel de forma cómoda. Compartimento especial para palas y ropa.", "80" },
-                    { 9, 5, "Bolsa Elite Pro", "5", "Bolsa de alta gama con capacidad para 4 palas, compartimentos termoaislados para pelotas y ropa. Diseño elegante con detalles en cuero.", "120" },
-                    { 10, 5, "Bolsa Junior", "12", "Bolsa diseñada para niños con espacio para 1 pala, pelotas y otros accesorios. Diseño colorido y ligero.", "30" },
-                    { 11, 1, "Pala Pro Carbon", "25", "Pala de alto rendimiento con núcleo de carbono y forma de lágrima. Perfecta para jugadores avanzados. Potencia y control excepcionales.", "150" },
-                    { 12, 1, "Pala All-Round", "30", "Pala equilibrada para jugadores de nivel intermedio. Núcleo de goma EVA y forma redonda. Gran versatilidad en el juego.", "100" },
-                    { 13, 1, "Pala Junior", "15", "Pala diseñada específicamente para jóvenes jugadores. Ligera y fácil de manejar, con tecnología adaptada para el aprendizaje.", "70" },
-                    { 14, 1, "Pala PowerShot", "20", "Pala de potencia con forma de diamante. Amplio punto dulce y excelente salida de bola. Ideal para jugadores que buscan golpes agresivos.", "120" },
-                    { 15, 1, "Pala ControlMaster", "18", "Pala diseñada para un control preciso del juego. Forma redonda y balance neutro. Perfecta para jugadores que priorizan la precisión sobre la potencia.", "130" },
-                    { 16, 3, "Overgrip ProFeel", "50", "Overgrip de alta calidad para mejorar el agarre y absorber el sudor. Material duradero y cómodo. Disponible en varios colores.", "5" },
-                    { 17, 3, "Muñequera Profesional", "40", "Muñequera ajustable para proteger la muñeca durante el juego. Tejido transpirable que evita la acumulación de sudor. Disponible en diferentes tamaños.", "8" },
-                    { 18, 3, "Gorra PádelSport", "35", "Gorra deportiva con visera curvada para proteger del sol. Material ligero y transpirable. Diseño moderno con el logo de PádelSport.", "15" },
-                    { 19, 3, "Protectores de Pala", "60", "Protectores adhesivos para proteger el borde de la pala de golpes y roces. Fácil de colocar y resistente al desgaste. Paquete con 3 unidades.", "10" },
-                    { 20, 3, "Cinta de Agarre ProFlex", "30", "Cinta adhesiva para mejorar el agarre en el mango de la pala. Material antideslizante y resistente al desgaste. Rollo de 3 metros.", "7" }
+                    { 1, 4, "6 Pelotas Xtreme", "https://example.com/photos/pelotas_xtreme.jpg", "100", "Pelota capaz de durar más de 3 partidos, resistente a golpes bruscos, muy ligera", 10.0 },
+                    { 2, 4, "6 Pelotas ProFlight", "https://example.com/photos/pelotas_proflight.jpg", "100", "Pelota diseñada para un vuelo estable y consistente. Construcción duradera para resistir largos rallies. Ideal para jugadores que buscan precisión en sus golpes.", 12.0 },
+                    { 3, 4, "6 Pelotas AirTech", "https://example.com/photos/pelotas_airtech.jpg", "100", "Pelota con tecnología de cámara de aire para un rebote uniforme y predecible. Cubierta resistente que garantiza una larga durabilidad. Apta para todo tipo de superficies.", 11.0 },
+                    { 4, 4, "6 Pelotas PowerSpin", "https://example.com/photos/pelotas_powerspin.jpg", "180", "Pelota diseñada para generar mayor efecto en los golpes. Núcleo interno optimizado para aumentar el spin. Duradera y resistente a golpes.", 13.0 },
+                    { 5, 4, "6 Pelotas SpeedX", "https://example.com/photos/pelotas_speedx.jpg", "250", "Pelota de alta velocidad para rallies rápidos. Superficie texturizada para un mejor agarre en la pista. Apta para jugadores de todos los niveles.", 10.0 },
+                    { 6, 5, "Bolsa ProTour", "https://www.ikea.com/es/es/images/bolsa-de-padel-pro-tour__0964485_PE817502_S4.JPG?f=xs", "20", "Bolsa de tamaño mediano con compartimentos para hasta 3 palas, pelotas y accesorios. Diseño ergonómico con correas ajustables para mayor comodidad.", 50.0 },
+                    { 7, 5, "Mochila PádelTech", "https://example.com/photos/mochila_padeltech.jpg", "15", "Mochila resistente al agua con capacidad para 2 palas, pelotas, calzado y otros accesorios. Bolsillos laterales para botellas de agua.", 40.0 },
+                    { 8, 5, "Bolsa TravelMaster", "https://example.com/photos/bolsa_travelmaster.jpg", "8", "Bolsa de viaje con ruedas para transportar todo el equipo de pádel de forma cómoda. Compartimento especial para palas y ropa.", 80.0 },
+                    { 9, 5, "Bolsa Elite Pro", "https://example.com/photos/bolsa_elite_pro.jpg", "5", "Bolsa de alta gama con capacidad para 4 palas, compartimentos termoaislados para pelotas y ropa. Diseño elegante con detalles en cuero.", 120.0 },
+                    { 10, 5, "Bolsa Junior", "https://example.com/photos/bolsa_junior.jpg", "12", "Bolsa diseñada para niños con espacio para 1 pala, pelotas y otros accesorios. Diseño colorido y ligero.", 30.0 },
+                    { 11, 1, "Pala Pro Carbon", "https://example.com/photos/pala_pro_carbon.jpg", "25", "Pala de alto rendimiento con núcleo de carbono y forma de lágrima. Perfecta para jugadores avanzados. Potencia y control excepcionales.", 150.0 },
+                    { 12, 1, "Pala All-Round", "https://example.com/photos/pala_all_round.jpg", "30", "Pala equilibrada para jugadores de nivel intermedio. Núcleo de goma EVA y forma redonda. Gran versatilidad en el juego.", 100.0 },
+                    { 13, 1, "Pala Junior", "https://example.com/photos/pala_junior.jpg", "15", "Pala diseñada específicamente para jóvenes jugadores. Ligera y fácil de manejar, con tecnología adaptada para el aprendizaje.", 70.0 },
+                    { 14, 1, "Pala PowerShot", "https://example.com/photos/pala_powershot.jpg", "20", "Pala de potencia con forma de diamante. Amplio punto dulce y excelente salida de bola. Ideal para jugadores que buscan golpes agresivos.", 120.0 },
+                    { 15, 1, "Pala ControlMaster", "https://example.com/photos/pala_controlmaster.jpg", "18", "Pala diseñada para un control preciso del juego. Forma redonda y balance neutro. Perfecta para jugadores que priorizan la precisión sobre la potencia.", 130.0 },
+                    { 16, 3, "Overgrip ProFeel", "https://example.com/photos/overgrip_profeel.jpg", "50", "Overgrip de alta calidad para mejorar el agarre y absorber el sudor. Material duradero y cómodo. Disponible en varios colores.", 5.0 },
+                    { 17, 3, "Muñequera Profesional", "https://example.com/photos/munequera_profesional.jpg", "40", "Muñequera ajustable para proteger la muñeca durante el juego. Tejido transpirable que evita la acumulación de sudor. Disponible en diferentes tamaños.", 8.0 },
+                    { 18, 3, "Gorra PádelSport", "https://example.com/photos/gorra_padelsport.jpg", "35", "Gorra deportiva con visera curvada para proteger del sol. Material ligero y transpirable. Diseño moderno con el logo de PádelSport.", 15.0 },
+                    { 19, 3, "Protectores de Pala", "https://example.com/photos/protectores_de_pala.jpg", "60", "Protectores adhesivos para proteger el borde de la pala de golpes y roces. Fácil de colocar y resistente al desgaste. Paquete con 3 unidades.", 10.0 },
+                    { 20, 3, "Cinta de Agarre ProFlex", "https://example.com/photos/cinta_de_agarre_proflex.jpg", "30", "Cinta adhesiva para mejorar el agarre en el mango de la pala. Material antideslizante y resistente al desgaste. Rollo de 3 metros.", 7.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -291,12 +285,12 @@ namespace TFGBackend.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reserva",
-                columns: new[] { "IdReservation", "IdPista", "IdSesion", "IdUser", "ReservationDate", "ReservationPrice", "UsuarioIdUser" },
+                columns: new[] { "IdReservation", "IdSesion", "IdUser", "ReservationDate", "ReservationPrice", "UsuarioIdUser" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, 1, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3656), "10", null },
-                    { 2, 2, 2, 2, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3660), "10", null },
-                    { 3, 3, 3, 3, new DateTime(2024, 5, 27, 18, 4, 20, 465, DateTimeKind.Local).AddTicks(3662), "10", null }
+                    { 1, 1, 1, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4388), "10", null },
+                    { 2, 2, 2, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4391), "10", null },
+                    { 3, 3, 3, new DateTime(2024, 5, 28, 18, 18, 22, 324, DateTimeKind.Local).AddTicks(4393), "10", null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -308,11 +302,6 @@ namespace TFGBackend.Data.Migrations
                 name: "IX_Compras_IdUser",
                 table: "Compras",
                 column: "IdUser");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reserva_IdPista",
-                table: "Reserva",
-                column: "IdPista");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reserva_IdSesion",
