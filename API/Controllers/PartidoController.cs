@@ -32,8 +32,17 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Partido partido)
+        public IActionResult Create(PartidoSimpleDto partidoDto)
         {
+            var partido = new Partido
+            {
+                Name = partidoDto.Name,
+                Estrellas = partidoDto.Estrellas,
+                Photo = partidoDto.Photo,
+                Duration = partidoDto.Duration,
+                Date = partidoDto.Date,
+            };
+
             _partidoService.Add(partido);
             return CreatedAtAction(nameof(Get), new { id = partido.IdPartido }, partido);
         }
