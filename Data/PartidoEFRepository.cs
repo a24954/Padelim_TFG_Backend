@@ -38,7 +38,7 @@ namespace TFGBackend.Data
                 .Take(4)  // Tomar solo los primeros 4 usuarios
                 .ToList();
 
-            return usuariosPartido;
+            return usuariosPartido.Any() ? usuariosPartido : new List<UsuarioPartidoDto>();
         }
 
         public void AddUsuarioToPartido(int usuarioId, int partidoId, int position)
@@ -96,6 +96,20 @@ namespace TFGBackend.Data
         public List<Partido> GetAll()
         {
             return _context.Partido.ToList();
+        }
+
+        public void DeleteUserFromPartido(int usuarioId, int partidoId)
+        {
+            var usuarioPartido = _context.UsuarioPartidos.FirstOrDefault(up => up.IdUser == usuarioId && up.IdPartido == partidoId);
+            if (usuarioPartido != null)
+            {
+                _context.UsuarioPartidos.Remove(usuarioPartido);
+                SaveChanges();
+            }
+            else
+            {
+                throw new KeyNotFoundException("UsuarioPartido not found.");
+            }
         }
     }
 }

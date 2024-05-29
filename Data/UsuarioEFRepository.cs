@@ -42,7 +42,7 @@ namespace TFGBackend.Data
                     Estrellas = p.Estrellas,
                     Duracion = p.Duration,
                     Fecha = p.Date,
-                    UserName = _context.Usuarios.FirstOrDefault(u => u.IdUser == usuarioId).UserName
+                    UserName = _context.Usuarios.Where(u => u.IdUser == p.IdUser).Select(u => u.UserName).FirstOrDefault()
                 })
                 .ToList();
 

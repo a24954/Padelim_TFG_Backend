@@ -76,12 +76,13 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpPost("{partidoId}/usuarios/{usuarioId}")]
-        public IActionResult AddUsuarioToPartido(int partidoId, int usuarioId, int position)
+        public ActionResult<List<UsuarioPartidoDto>> AddUsuarioToPartido(int partidoId, int usuarioId, int position)
         {
             try
             {
                 _partidoService.AddUsuarioToPartido(usuarioId, partidoId, position);
-                return NoContent();
+                var usuariosPartido = _partidoService.GetUsuariosPartido(partidoId);
+                return usuariosPartido.Any() ? usuariosPartido : new List<UsuarioPartidoDto>();
             }
             catch (KeyNotFoundException ex)
             {
@@ -102,6 +103,24 @@ namespace TFGBackend.API.Controllers
                 return NotFound();
 
             return usuarios;
+        }
+
+        [HttpDelete("{partidoId}/usuarios/{usuarioId}")]
+        public IActionResult DeleteUsuarioFromPartido(int partidoId, int usuarioId)
+        {
+            try
+            {
+                _partidoService.DeleteUserFromPartido(usuarioId, partidoId);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -32,5 +32,9 @@ namespace TFGBackend.Business
         {
             _partidoRepository.AddUsuarioToPartido(usuarioId, partidoId, position);
         }
+        public void DeleteUserFromPartido(int usuarioId, int partidoId)
+        {
+            _partidoRepository.DeleteUserFromPartido(usuarioId, partidoId);
+        }
     }
 }

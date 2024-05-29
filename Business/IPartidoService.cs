@@ -11,6 +11,8 @@ namespace TFGBackend.Business
         void Delete(int id);
         void Update(Partido partido);
         List<UsuarioPartidoDto> GetUsuariosPartido(int partidoId);
-        void AddUsuarioToPartido(int usuarioId, int partidoId, int position); 
+        void AddUsuarioToPartido(int usuarioId, int partidoId, int position);
+        void DeleteUserFromPartido(int usuarioId, int partidoId); // Nuevo método
+
     }
 }
