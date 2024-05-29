@@ -15,5 +15,7 @@ namespace TFGBackend.Models
         [ForeignKey("Partido")]
         public int IdPartido { get; set; }
         public Partido Partido { get; set; }
+
+        public int Position { get; set; }
     }
 }

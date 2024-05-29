@@ -4,5 +4,7 @@ namespace TFGBackend.Models
     {
         public string UserName { get; set; }
         public string Email { get; set; }
+
+        public int Position { get; set; }
     }
 }

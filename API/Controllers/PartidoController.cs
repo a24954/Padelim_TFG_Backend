@@ -76,11 +76,11 @@ namespace TFGBackend.API.Controllers
         }
 
         [HttpPost("{partidoId}/usuarios/{usuarioId}")]
-        public IActionResult AddUsuarioToPartido(int partidoId, int usuarioId)
+        public IActionResult AddUsuarioToPartido(int partidoId, int usuarioId, int position)
         {
             try
             {
-                _partidoService.AddUsuarioToPartido(usuarioId, partidoId);
+                _partidoService.AddUsuarioToPartido(usuarioId, partidoId, position);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)

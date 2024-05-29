@@ -32,7 +32,8 @@ namespace TFGBackend.Data
                 .Select(up => new UsuarioPartidoDto
                 {
                     UserName = up.Usuario.UserName,
-                    Email = up.Usuario.Email
+                    Email = up.Usuario.Email,
+                    Position = up.Position
                 })
                 .Take(4)  // Tomar solo los primeros 4 usuarios
                 .ToList();
@@ -40,12 +41,14 @@ namespace TFGBackend.Data
             return usuariosPartido;
         }
 
-        public void AddUsuarioToPartido(int usuarioId, int partidoId)
+        public void AddUsuarioToPartido(int usuarioId, int partidoId, int position)
         {
             var usuarioPartido = new UsuarioPartido
             {
                 IdUser = usuarioId,
-                IdPartido = partidoId
+                IdPartido = partidoId,
+                Position = position
+
             };
 
             _context.UsuarioPartidos.Add(usuarioPartido);

@@ -15,6 +15,8 @@ public class Partido
     public string  ? Photo { get; set; }
     [Required]
     public string  ? Duration { get; set; }
+
+    public int Position { get; set; }
     
     public DateTime  ? Date { get; set; }
     [Required]
