@@ -24,13 +24,14 @@ namespace TFGBackend.Business
         public void Add(Usuario usuario) => _usuarioRepository.Add(usuario);
 
         public void Delete(int id) => _usuarioRepository.Delete(id);
-        
-        public Usuario? GetForUpdate(int IdUser) {
+
+        public Usuario? GetForUpdate(int IdUser)
+        {
             return _usuarioRepository.GetForUpdate(IdUser);
         }
 
         public void Update(Usuario usuario) => _usuarioRepository.Update(usuario);
-        
+
         public Usuario Login(string userName, string password)
         {
             return _usuarioRepository.GetAll().FirstOrDefault(u => u.UserName == userName && u.Password == password);
@@ -50,5 +51,15 @@ namespace TFGBackend.Business
         {
             return _usuarioRepository.GetComprasUsuario(usuarioId);
         }
+        public void BorrarComprasPorUsuario(int usuarioId)
+        {
+            _usuarioRepository.BorrarComprasPorUsuario(usuarioId);
+        }
+
+        public void BorrarCompra(int usuarioId, int compraId)
+        {
+            _usuarioRepository.BorrarCompra(usuarioId, compraId);
+        }
+
     }
 }

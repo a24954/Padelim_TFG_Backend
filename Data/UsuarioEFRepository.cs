@@ -137,10 +137,11 @@ namespace TFGBackend.Data
                 .Where(c => c.IdUser == usuarioId)
                 .Select(c => new CompraResponseDto
                 {
+                    IdCompra = c.IdCompra,
                     IdUser = c.IdUser,
                     UserName = _context.Usuarios.FirstOrDefault(u => u.IdUser == c.IdUser).UserName,
                     Productos = _context.Compras
-                        .Where(cp => cp.IdUser == c.IdUser)
+                        .Where(cp => cp.IdUser == c.IdUser && cp.IdCompra == c.IdCompra)
                         .Select(cp => new ProductoCompraResponseDto
                         {
                             IdProducto = cp.IdProducto,
@@ -150,5 +151,27 @@ namespace TFGBackend.Data
                         }).ToList()
                 }).ToList();
         }
+        public void BorrarComprasPorUsuario(int usuarioId)
+        {
+            var compras = _context.Set<Compra>().Where(c => c.IdUser == usuarioId);
+            _context.Set<Compra>().RemoveRange(compras);
+            _context.SaveChanges();
+        }
+
+        public void BorrarCompra(int usuarioId, int compraId)
+        {
+            var compra = _context.Compras.FirstOrDefault(c => c.IdUser == usuarioId && c.IdCompra == compraId);
+            if (compra != null)
+            {
+                _context.Compras.Remove(compra);
+                _context.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine($"Compra no encontrada: IdCompra = {compraId}, IdUser = {usuarioId}");
+            }
+        }
+
+
     }
 }

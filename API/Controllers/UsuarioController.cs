@@ -126,5 +126,18 @@ namespace TFGBackend.API.Controllers
 
             return Ok(compras);
         }
+        [HttpDelete("{usuarioId}/compras/{compraId}")]
+        public IActionResult BorrarCompra(int usuarioId, int compraId)
+        {
+            try
+            {
+                _usuarioService.BorrarCompra(usuarioId, compraId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 }

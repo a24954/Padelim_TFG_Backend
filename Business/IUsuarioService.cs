@@ -16,5 +16,8 @@ namespace TFGBackend.Business
         List<PartidoUsuarioDto> GetPartidosUsuario(int usuarioId);
         CompraResponseDto ComprarProductos(CompraRequestDto compraRequest);
         List<CompraResponseDto> GetComprasUsuario(int usuarioId);
+        void BorrarComprasPorUsuario(int usuarioId);
+        void BorrarCompra(int usuarioId, int compraId);
+
     }
 }
