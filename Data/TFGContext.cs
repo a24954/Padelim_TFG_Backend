@@ -125,9 +125,9 @@ namespace TFGBackend.Data
                 new Reserva { IdReservation = 3, ReservationPrice = "10", ReservationDate = System.DateTime.Now, IdUser = 3, IdSesion = 3 }
             );
             modelBuilder.Entity<Sesion>().HasData(
-                new Sesion { IdSesion = 1, SesionTime = "10:00", IdPista = 1 },
-                new Sesion { IdSesion = 2, SesionTime = "12:00", IdPista = 2 },
-                new Sesion { IdSesion = 3, SesionTime = "14:00", IdPista = 3 }
+                new Sesion { IdSesion = 1, SesionTime = "10:00", SesionDate = DateTime.Now, IdPista = 1 },
+                new Sesion { IdSesion = 2, SesionTime = "12:00", SesionDate = DateTime.Now, IdPista = 2 },
+                new Sesion { IdSesion = 3, SesionTime = "14:00", SesionDate = DateTime.Now, IdPista = 3 }
             );
             modelBuilder.Entity<Partido>().HasData(
                 new Partido { IdPartido = 1, Name = "Partido 1", Estrellas = "5", Photo = "photo1", Duration = "2 horas", Date = DateTime.Now, IdUser = 1 },

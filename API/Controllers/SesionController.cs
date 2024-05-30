@@ -51,6 +51,7 @@ namespace TFGBackend.API.Controllers
             {
                 IdSesion = id,
                 SesionTime = sesionUpdateDTO.SesionTime,
+                SesionDate = sesionUpdateDTO.SesionDate,
                 IdPista = sesionUpdateDTO.IdPista
             });
 
