@@ -64,6 +64,7 @@ namespace TFGBackend.Data
                 existingPartido.Estrellas = partido.Estrellas;
                 existingPartido.Photo = partido.Photo;
                 existingPartido.Duration = partido.Duration;
+                existingPartido.Description = partido.Description;
                 existingPartido.Date = partido.Date;
                 existingPartido.IdUser = partido.IdUser;
 

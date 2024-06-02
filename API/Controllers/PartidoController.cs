@@ -39,6 +39,7 @@ namespace TFGBackend.API.Controllers
                 Name = partidoDto.Name,
                 Estrellas = partidoDto.Estrellas,
                 Photo = partidoDto.Photo,
+                Description = partidoDto.Description,
                 Duration = partidoDto.Duration,
                 Date = partidoDto.Date,
             };
