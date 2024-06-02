@@ -69,12 +69,14 @@ namespace TFGBackend.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var pista = _pistaService.Get(id);
-
-            if (pista is null)
+            try
+            {
+                _pistaService.Delete(id);
+            }
+            catch (KeyNotFoundException)
+            {
                 return NotFound();
-
-            _pistaService.Delete(id);
+            }
 
             return NoContent();
         }

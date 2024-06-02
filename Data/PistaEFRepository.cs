@@ -48,14 +48,23 @@ namespace TFGBackend.Data
         public void Delete(int pistaId)
         {
             var pista = Get(pistaId);
-            if (pista is null)
+            if (pista == null)
             {
-                throw new KeyNotFoundException("Account not found.");
+                throw new KeyNotFoundException("Pista not found.");
             }
+
+            var sesiones = _context.Sesion.Where(s => s.IdPista == pistaId).ToList();
+            foreach (var sesion in sesiones)
+            {
+                var reservas = _context.Reserva.Where(r => r.IdSesion == sesion.IdSesion).ToList();
+                _context.Reserva.RemoveRange(reservas);
+            }
+
+            _context.Sesion.RemoveRange(sesiones);
             _context.Pista.Remove(pista);
             SaveChanges();
-
         }
+
 
 
         public void SaveChanges()
