@@ -14,6 +14,8 @@ public class Sesion
 
     public int IdPista { get; set; }
 
+    public bool Reservado { get; set; }
+
     [ForeignKey("IdPista")]
     public Pista Pista { get; set; }
 }

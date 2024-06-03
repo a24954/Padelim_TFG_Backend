@@ -22,6 +22,7 @@ namespace TFGBackend.Data
                 IdSesion = sesionDto.IdSesion,
                 SesionTime = sesionDto.SesionTime,
                 SesionDate = sesionDto.SesionDate,
+                Reservado = sesionDto.Reservado,
                 IdPista = sesionDto.IdPista
             };
             _context.Sesion.Add(sesion);
@@ -39,6 +40,7 @@ namespace TFGBackend.Data
                 IdSesion = sesion.IdSesion,
                 SesionTime = sesion.SesionTime,
                 SesionDate = sesion.SesionDate,
+                Reservado = sesion.Reservado,
                 IdPista = sesion.IdPista
             };
         }
@@ -52,6 +54,7 @@ namespace TFGBackend.Data
                     IdSesion = s.IdSesion,
                     SesionTime = s.SesionTime,
                     SesionDate = s.SesionDate,
+                    Reservado = s.Reservado,
                     IdPista = s.IdPista
                 }).ToList();
 
@@ -60,10 +63,13 @@ namespace TFGBackend.Data
 
         public void Update(SesionSimpleDto sesionDto)
         {
-            var existingSesion = _context.Sesion.Find(sesionDto.IdPista);
+            var existingSesion = _context.Sesion.Find(sesionDto.IdSesion);
             if (existingSesion != null)
             {
+                existingSesion.IdSesion = sesionDto.IdSesion;
                 existingSesion.SesionTime = sesionDto.SesionTime;
+                existingSesion.SesionDate = sesionDto.SesionDate;
+                existingSesion.Reservado = sesionDto.Reservado;
                 existingSesion.IdPista = sesionDto.IdPista;
 
                 _context.Entry(existingSesion).State = EntityState.Modified;
@@ -98,6 +104,8 @@ namespace TFGBackend.Data
             {
                 IdSesion = s.IdSesion,
                 SesionTime = s.SesionTime,
+                SesionDate = s.SesionDate,
+                Reservado = s.Reservado,
                 IdPista = s.IdPista
             }).ToList();
         }

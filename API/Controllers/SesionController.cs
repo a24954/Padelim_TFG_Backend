@@ -48,22 +48,25 @@ namespace TFGBackend.API.Controllers
         public IActionResult Create(SesionSimpleDto sesionDTO)
         {
             _sesionService.Add(sesionDTO);
-            return CreatedAtAction(nameof(Get), new { id = sesionDTO.IdPista }, sesionDTO);
+            return CreatedAtAction(nameof(Get), new { id = sesionDTO.IdSesion }, sesionDTO);
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, SesionUpdateDto sesionUpdateDTO)
         {
-            if (id != sesionUpdateDTO.IdPista)
+            if (id != sesionUpdateDTO.IdSesion)
                 return BadRequest();
 
-            _sesionService.Update(new SesionSimpleDto
+            var sesionToUpdate = new SesionSimpleDto
             {
                 IdSesion = id,
                 SesionTime = sesionUpdateDTO.SesionTime,
                 SesionDate = sesionUpdateDTO.SesionDate,
+                Reservado = sesionUpdateDTO.Reservado,
                 IdPista = sesionUpdateDTO.IdPista
-            });
+            };
+
+            _sesionService.Update(sesionToUpdate);
 
             return NoContent();
         }
