@@ -61,5 +61,10 @@ namespace TFGBackend.Business
             _usuarioRepository.BorrarCompra(usuarioId, compraId);
         }
 
+        public List<CompraResponseDto> GetAllCompras()
+        {
+            return _usuarioRepository.GetAllCompras();
+        }
+
     }
 }

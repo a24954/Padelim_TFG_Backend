@@ -139,5 +139,14 @@ namespace TFGBackend.API.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+        [HttpGet("compras")]
+        public IActionResult GetAllCompras()
+        {
+            var compras = _usuarioService.GetAllCompras();
+            if (compras == null || compras.Count == 0)
+                return NotFound();
+
+            return Ok(compras);
+        }
     }
 }

@@ -131,6 +131,29 @@ namespace TFGBackend.Data
             };
         }
 
+        public List<CompraResponseDto> GetAllCompras()
+        {
+            return _context.Compras
+                .Include(c => c.Usuario)
+                .Include(c => c.Producto)
+                .Select(c => new CompraResponseDto
+                {
+                    IdCompra = c.IdCompra,
+                    IdUser = c.IdUser,
+                    UserName = c.Usuario.UserName,
+                    Productos = new List<ProductoCompraResponseDto>
+                    {
+                        new ProductoCompraResponseDto
+                        {
+                            IdProducto = c.IdProducto,
+                            Nombre = c.Producto.Name_Product,
+                            Cantidad = c.Cantidad,
+                            PrecioTotal = c.PrecioTotal
+                        }
+                    }
+                }).ToList();
+        }
+
         public List<CompraResponseDto> GetComprasUsuario(int usuarioId)
         {
             return _context.Compras
