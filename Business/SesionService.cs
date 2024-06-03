@@ -16,6 +16,7 @@ namespace TFGBackend.Business
         public List<SesionSimpleDto> GetAll() => _sesionRepository.GetAll();
 
         public SesionSimpleDto? Get(int id) => _sesionRepository.Get(id);
+        public List<SesionSimpleDto>? GetPista(int id) => _sesionRepository.GetPista(id);
 
         public void Add(SesionSimpleDto sesion) => _sesionRepository.Add(sesion);
 

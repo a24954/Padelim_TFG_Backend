@@ -7,6 +7,7 @@ namespace TFGBackend.Business
     {
         List<SesionSimpleDto> GetAll();
         SesionSimpleDto? Get(int id);
+        List<SesionSimpleDto>? GetPista(int id);
         void Add(SesionSimpleDto sesion);
         void Delete(int id);
         void Update(SesionSimpleDto sesion);

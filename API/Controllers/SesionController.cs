@@ -34,6 +34,16 @@ namespace TFGBackend.API.Controllers
             return Ok(sesion);
         }
 
+        [HttpGet("Pista/{id}")]
+        public ActionResult<SesionSimpleDto> GetPista(int id)
+        {
+            var sesion = _sesionService.GetPista(id);
+            if (sesion == null)
+                return NotFound();
+
+            return Ok(sesion);
+        }
+
         [HttpPost]
         public IActionResult Create(SesionSimpleDto sesionDTO)
         {
