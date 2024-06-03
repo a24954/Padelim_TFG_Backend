@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "VTvwRm3JAkWz857gbOnygP9Vb7fuFri/CW+CMFZuk1K2sW1ZNJMHMEvqqZ1Fp7fbDiNkDasygfrZM+Rw+vuAYA==",
+  "dgSpecHash": "R9vEVGoQTG8wFd0swymLnt7M3E1dQd0zZODokdjUb9wWCSB+sT+3b4KaoeVjXc5X86xmL4TGBKJoUADrzF/t2g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Marcos casa\\Desktop\\TFGBACKEND\\TFGBackend\\Models\\TFGBackend.Models.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Totti\\Desktop\\TFG\\Backend\\Models\\TFGBackend.Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Totti\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.18\\microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\Totti\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.18\\microsoft.windowsdesktop.app.ref.7.0.18.nupkg.sha512",
+    "C:\\Users\\Totti\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.18\\microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512"
+  ],
   "logs": []
 }
