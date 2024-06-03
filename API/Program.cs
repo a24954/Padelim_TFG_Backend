@@ -53,7 +53,7 @@ app.UseSwaggerUI(c =>
 
 app.UseCors(options =>
 {
-    options.WithOrigins("http://localhost:8081")
+    options.WithOrigins("http://localhost:8080")
            .AllowAnyMethod()
            .AllowAnyHeader()
            .AllowCredentials();

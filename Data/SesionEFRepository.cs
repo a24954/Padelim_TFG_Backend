@@ -21,6 +21,7 @@ namespace TFGBackend.Data
             {
                 IdSesion = sesionDto.IdSesion,
                 SesionTime = sesionDto.SesionTime,
+                SesionDate = sesionDto.SesionDate,
                 IdPista = sesionDto.IdPista
             };
             _context.Sesion.Add(sesion);
@@ -37,8 +38,24 @@ namespace TFGBackend.Data
             {
                 IdSesion = sesion.IdSesion,
                 SesionTime = sesion.SesionTime,
+                SesionDate = sesion.SesionDate,
                 IdPista = sesion.IdPista
             };
+        }
+
+        public List<SesionSimpleDto>? GetPista(int pistaId)
+        {
+            var sesion = _context.Sesion
+                .Where(sesion => sesion.IdPista == pistaId)
+                .Select(s => new SesionSimpleDto
+                {
+                    IdSesion = s.IdSesion,
+                    SesionTime = s.SesionTime,
+                    SesionDate = s.SesionDate,
+                    IdPista = s.IdPista
+                }).ToList();
+
+            return sesion;
         }
 
         public void Update(SesionSimpleDto sesionDto)
